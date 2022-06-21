@@ -10,6 +10,7 @@ public class InputManager : PersistentSingleton<InputManager>
 
     //Delegates 
     public delegate void ParamVector2D(Vector2 vec2);
+    public ParamVector2D UpdateMousePos;
     public ParamVector2D Move;
 
     private void Awake()
@@ -45,6 +46,7 @@ public class InputManager : PersistentSingleton<InputManager>
     // Update is called once per frame
     void Update()
     {
+        UpdateMousePos(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
         Move(m_controlsAsset.Player.Move.ReadValue<Vector2>());
     }
 }

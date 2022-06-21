@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float m_maxSpeed = 10f;
     [SerializeField] private float m_acceleration = 2f;
     [SerializeField] private float m_breakAcceleration = 4f;
-    Vector2 m_currentVelocity = Vector2.zero;
-    Vector2 m_velocityDirection = Vector2.zero;
-    
+    private Vector2 m_currentVelocity = Vector2.zero;
+    private Vector2 m_velocityDirection = Vector2.zero;
+    private Vector3 mouseWorldPos;
 
+    //References
+    private Camera m_mainCamera;
 
     //Components
     private Transform m_transform;
@@ -30,13 +32,16 @@ public class Player : MonoBehaviour
         if (InputManager.Instance)
         {
             InputManager.Instance.Move += Move;
+            InputManager.Instance.UpdateMousePos += FaceToMouse;
         }
+        m_mainCamera = Camera.main;
     }
     private void OnDestroy()
     {
         if(InputManager.Instance)
         {
             InputManager.Instance.Move -= Move;
+            InputManager.Instance.UpdateMousePos -= FaceToMouse;
         }
     }
     // Update is called once per frame
@@ -45,20 +50,28 @@ public class Player : MonoBehaviour
         
     }
 
-    private void Move(Vector2 input)
+    private void FaceToMouse(Vector2 _mousePos)
+    {
+        mouseWorldPos = m_mainCamera.ScreenToWorldPoint(new Vector3(_mousePos.x, _mousePos.y, 0));
+        mouseWorldPos.z = m_transform.position.z;
+        
+        m_transform.right = (mouseWorldPos - m_transform.position).normalized;
+    }
+    private void Move(Vector2 _input)
     {
         m_currentVelocity = m_cmpRB.velocity;
         m_velocityDirection = m_currentVelocity.normalized;
-        if (input.magnitude < 0.1f)
+        if (_input.magnitude < 0.1f)
         {
             m_currentVelocity -= m_velocityDirection * m_breakAcceleration * Time.deltaTime;
         }
         else
         {
-            input.Normalize();
-            m_currentVelocity += input * m_acceleration * Time.deltaTime;
-            Vector2.ClampMagnitude(m_currentVelocity, m_maxSpeed);
+            _input.Normalize();
+            m_currentVelocity += _input * m_acceleration * Time.deltaTime;
         }
+        m_currentVelocity = Vector2.ClampMagnitude(m_currentVelocity, m_maxSpeed);
+        Debug.Log(m_currentVelocity.magnitude);
         m_cmpRB.velocity = m_currentVelocity;
     }
 }
