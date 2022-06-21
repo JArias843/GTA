@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         m_velocityDirection = m_currentVelocity.normalized;
         if (input.magnitude < 0.1f)
         {
-            m_currentVelocity -= m_velocityDirection * -1f * m_breakAcceleration * Time.deltaTime;
+            m_currentVelocity -= m_velocityDirection * m_breakAcceleration * Time.deltaTime;
         }
         else
         {
