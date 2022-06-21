@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone ="yes"?>
+<GTA>
+	<Levels>
+		<Level_1>
+			<min_score> 100 </min_score>
+			<background> "map_1" </background>
+			<time> 60 </time>
+		</Level_1>
+		<Level_2>
+			<min_score> 120 </min_score>
+			<background> "map_2" </background>
+			<time> 60 </time>
+		</Level_2>
+	</Levels>
+</GTA>
