@@ -28,7 +28,6 @@ public class GameManager : PersistentSingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        MapLoader.LoadMap(0);
         UpdateGameState(GameState.MainMenu);
     }
 
@@ -46,20 +45,29 @@ public class GameManager : PersistentSingleton<GameManager>
     {
         // Cargar pantalla de menu principal
     }
-
-    private void HandlePlaying()
+    public void HandlePlaying()
     {
-        Application.Quit();
+        
     }
-    
+
+    public void HandleUnpause()
+    {
+        Time.timeScale = 1;
+    }
+
     private void HandlePause()
     {
         Time.timeScale = 0;
     }
-    
-    private void HandleExit()
+
+    public void StartGame()
     {
-        Time.timeScale = 0;
+        MapLoader.LoadMap(0);
+    }
+    
+    public void HandleExit()
+    {
+        Application.Quit();
     }
 
     public void UpdateGameState(GameState _gameState)
