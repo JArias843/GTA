@@ -13,12 +13,16 @@ public class InputManager : PersistentSingleton<InputManager>
     public ParamVector2D UpdateMousePos;
     public ParamVector2D Move;
 
+    public delegate void NoParam();
+    public NoParam OnInteractPressed;
+
     private void Awake()
     {
         if(m_controlsAsset == null)
         {
             m_controlsAsset = new Controls();
             m_controlsAsset.Enable();
+            //m_controlsAsset.Player.Interact.performed += 
         }
     }
     private void OnEnable()
