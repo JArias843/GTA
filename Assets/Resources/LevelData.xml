@@ -3,13 +3,13 @@
 	<Levels>
 		<Level_1>
 			<min_score> 100 </min_score>
-			<background> "map_1" </background>
+			<scene> 0 </scene>
 			<time> 60 </time>
 		</Level_1>
 		<Level_2>
 			<min_score> 120 </min_score>
-			<background> "map_2" </background>
-			<time> 60 </time>
+			<scene> 1 </scene>
+			<time> 50 </time>
 		</Level_2>
 	</Levels>
 </GTA>
