@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Obstacle
   - Walkable
-  - 
-  - 
-  - 
+  - Player
+  - Scenario
+  - Enemy
   - 
   - 
   - 
