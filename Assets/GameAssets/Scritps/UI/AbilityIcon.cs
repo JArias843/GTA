@@ -9,15 +9,15 @@ public class AbilityIcon : MonoBehaviour
     [SerializeField] private Image m_progressIMG;
     [SerializeField] private GameObject m_inactiveSkillFilterGO;
 
-    void ToggleActiveFilter()
+    public void ToggleActiveFilter()
     {
         m_inactiveSkillFilterGO.SetActive(!m_inactiveSkillFilterGO.activeSelf);
     }
-    void ToggleRechargeBar()
+    public void ToggleRechargeBar()
     {
         m_rechargeBarGO.SetActive(!m_rechargeBarGO.activeSelf);
     }
-    void UpdateFillAmount(float _newFillamout)
+    public void UpdateFillAmount(float _newFillamout)
     {
         m_progressIMG.fillAmount = _newFillamout;
     }

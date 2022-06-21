@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DefensiveSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4ec9ad9-59ae-4298-ae42-c38a3f315bb6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -175,6 +183,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34a5f871-1fcc-44c9-8959-bdca72b9d07d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DefensiveSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +205,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_DefensiveSkill = m_Player.FindAction("DefensiveSkill", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,6 +258,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Mouse;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_DefensiveSkill;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -245,6 +266,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @DefensiveSkill => m_Wrapper.m_Player_DefensiveSkill;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +285,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @DefensiveSkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefensiveSkill;
+                @DefensiveSkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefensiveSkill;
+                @DefensiveSkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefensiveSkill;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -276,6 +301,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @DefensiveSkill.started += instance.OnDefensiveSkill;
+                @DefensiveSkill.performed += instance.OnDefensiveSkill;
+                @DefensiveSkill.canceled += instance.OnDefensiveSkill;
             }
         }
     }
@@ -285,5 +313,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnDefensiveSkill(InputAction.CallbackContext context);
     }
 }

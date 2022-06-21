@@ -14,7 +14,10 @@ public class InputManager : PersistentSingleton<InputManager>
     public ParamVector2D Move;
 
     public delegate void NoParam();
-    public NoParam OnInteractPressed;
+    public NoParam OnInteractPressedEvent;
+    public NoParam OnInteractReleasedEvent;
+    public NoParam OnDefensiveSkillPressedEvent;
+
 
     private void Awake()
     {
@@ -22,7 +25,9 @@ public class InputManager : PersistentSingleton<InputManager>
         {
             m_controlsAsset = new Controls();
             m_controlsAsset.Enable();
-            //m_controlsAsset.Player.Interact.performed += 
+            m_controlsAsset.Player.Interact.performed += OnInteractPressed;
+            m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
+            m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
         }
     }
     private void OnEnable()
@@ -32,19 +37,19 @@ public class InputManager : PersistentSingleton<InputManager>
             m_controlsAsset = new Controls();
         }
         m_controlsAsset.Enable();
+        m_controlsAsset.Player.Interact.performed += OnInteractPressed;
+        m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
+        m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
     }
     private void OnDisable()
     {
         if (m_controlsAsset != null)
         {
             m_controlsAsset.Disable();
+            m_controlsAsset.Player.Interact.performed -= OnInteractPressed;
+            m_controlsAsset.Player.Interact.canceled -= OnInteractReleased;
+            m_controlsAsset.Player.DefensiveSkill.performed -= OnDefensiveSkillPressed;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -52,5 +57,18 @@ public class InputManager : PersistentSingleton<InputManager>
     {
         UpdateMousePos(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
         Move(m_controlsAsset.Player.Move.ReadValue<Vector2>());
+    }
+
+    private void OnInteractPressed(InputAction.CallbackContext ctx)
+    {
+        OnInteractPressedEvent();
+    }
+    private void OnInteractReleased(InputAction.CallbackContext ctx)
+    {
+        OnInteractReleasedEvent();
+    }
+    private void OnDefensiveSkillPressed(InputAction.CallbackContext ctx)
+    {
+        OnDefensiveSkillPressedEvent();
     }
 }

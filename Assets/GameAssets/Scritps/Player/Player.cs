@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
             m_currentVelocity += _input * m_acceleration * Time.deltaTime;
         }
         m_currentVelocity = Vector2.ClampMagnitude(m_currentVelocity, m_maxSpeed);
-        Debug.Log(m_currentVelocity.magnitude);
         m_cmpRB.velocity = m_currentVelocity;
     }
 }
