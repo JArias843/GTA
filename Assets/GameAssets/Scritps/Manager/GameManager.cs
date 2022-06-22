@@ -68,9 +68,6 @@ public class GameManager : TemporalSingleton<GameManager>
 
     private void Update()
     {
-        m_levelData.m_timer -= Time.deltaTime;
-        GameCC.Instance.UpdateTimer(m_levelData.m_timer);
-
         if(!m_isFinish)
         {
             if (m_levelData.m_timer <= 0 && m_player.CoinsStolen >= m_levelData.m_score)
@@ -84,6 +81,9 @@ public class GameManager : TemporalSingleton<GameManager>
                 UpdateGameState(GameState.Lose);
                 m_isFinish = true;
             }
+
+            m_levelData.m_timer -= Time.deltaTime;
+            GameCC.Instance.UpdateTimer(m_levelData.m_timer);
         }
     }
 
