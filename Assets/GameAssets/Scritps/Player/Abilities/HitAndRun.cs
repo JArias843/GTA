@@ -11,6 +11,7 @@ public class HitAndRun : AbilityParent
     [SerializeField] private int m_amountToStealOnCollision;
     bool m_isHnRActive = false;
     private float m_currentTimer = 0f;
+    public CameraShake m_cameraShake;
 
     private Player m_cmpPlayer;
     private void Awake()
@@ -58,6 +59,7 @@ public class HitAndRun : AbilityParent
                 m_isHnRActive = false;
                 m_cmpPlayer.CurrentSpeedMultiplier -= m_maxSpeedMultiplier;
                 m_cmpPlayer.CurrentAccMultiplier -= m_accMultiplier;
+                StartCoroutine(m_cameraShake.Shake(0.10f, 0.3f));
             }
         }
     }
