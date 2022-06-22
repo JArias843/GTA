@@ -136,11 +136,11 @@ public class MusicManager : PersistentSingleton<MusicManager>
 
     private AudioSource CreateAudioSource(string name, bool isLoop)
     {
-        GameObject temporaryAudioHost         = new GameObject(name);
-        AudioSource audioSource               = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource;  
-		audioSource.playOnAwake               = false;
-        audioSource.loop                      = isLoop;
-        audioSource.spatialBlend              = 0.0f;
+        GameObject temporaryAudioHost = new GameObject(name);
+        AudioSource audioSource = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource;  
+		audioSource.playOnAwake = false;
+        audioSource.loop = isLoop;
+        audioSource.spatialBlend = 0.0f;
         temporaryAudioHost.transform.SetParent(this.transform);
         return audioSource;
     }

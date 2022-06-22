@@ -100,8 +100,16 @@ public class LoadScreen : MonoBehaviour
         if(textToContinueObj.activeSelf)
         {
             asyncOperation.allowSceneActivation = true;
+
+            MusicManager.Instance.MusicVolume = 0.25f;
+            MusicManager.Instance.PlayBackgroundMusic("Game_Theme");
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             Destroy(textToContinueObj);
             Destroy(fillObj);
+
             reset = false;
         }
     }
