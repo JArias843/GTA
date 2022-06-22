@@ -46,6 +46,10 @@ public class DropDecoy : AbilityParent
     {
         InputManager.Instance.UpdateMousePos += SaveMousePos;
     }
+    private void OnDestroy()
+    {
+        InputManager.Instance.UpdateMousePos -= SaveMousePos;
+    }
 
     public override void InitAbility(int numCharges, int abilityIndex)
     {

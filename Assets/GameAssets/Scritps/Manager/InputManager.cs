@@ -83,15 +83,35 @@ public class InputManager : PersistentSingleton<InputManager>
             }
         }
     }
+    private void OnDestroy()
+    {
+        if (m_controlsAsset != null)
+        {
+            m_controlsAsset.Disable();
+            if (m_isRegistered)
+            {
+                m_isRegistered = false;
+                m_controlsAsset.Player.Interact.performed -= OnInteractPressed;
+                m_controlsAsset.Player.Interact.canceled -= OnInteractReleased;
+                m_controlsAsset.Player.DefensiveSkill.performed -= OnDefensiveSkillPressed;
+                m_controlsAsset.Player.Ability1.performed -= OnOnAbility1Pressed;
+                m_controlsAsset.Player.Ability2.performed -= OnOnAbility2Pressed;
+                m_controlsAsset.Player.Ability3.performed -= OnOnAbility3Pressed;
+                m_controlsAsset.Player.Escape.performed -= OnEscapePressed;
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
-        UpdateMousePos?.Invoke(new Vector2(worldPos.x, worldPos.y));
+        if(Time.timeScale == 1)
+        {
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
+            UpdateMousePos?.Invoke(new Vector2(worldPos.x, worldPos.y));
         
-
-        Move?.Invoke(m_controlsAsset.Player.Move.ReadValue<Vector2>());
+            Move?.Invoke(m_controlsAsset.Player.Move.ReadValue<Vector2>());
+        }
     }
 
     private void OnInteractPressed(InputAction.CallbackContext ctx)

@@ -59,6 +59,7 @@ public class SmokeBomb : MonoBehaviour
         m_transform.position = _position;
         m_currentDuration = m_smokeBombEffectDuration;
         m_particles.Play();
+        GetComponent<AudioSource>().Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
