@@ -39,6 +39,11 @@ public class SmokeBomb : MonoBehaviour
             if(!m_particles.isPlaying)
             {
                 gameObject.SetActive(false);
+                if (m_player)
+                {
+                    m_player.m_isVisible = true;
+                }
+                Destroy(gameObject);
             }
         }
         
@@ -57,7 +62,7 @@ public class SmokeBomb : MonoBehaviour
         m_player = collision.GetComponent<Player>();
         if (m_player != null)
         {
-            if(!m_isCausingEffect)
+            if(m_isCausingEffect)
             {
                 m_player.m_isVisible = false;
             }

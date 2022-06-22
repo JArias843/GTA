@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5704685578977007180}
   - component: {fileID: 5704685578977007181}
   - component: {fileID: 5704685578977007182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5704685579101597485}
   - component: {fileID: 5704685579101597484}
   - component: {fileID: 1730482866443792223}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,10 +249,9 @@ GameObject:
   - component: {fileID: 8992261513447037745}
   - component: {fileID: 8496176382347778628}
   - component: {fileID: 4837926890564486020}
-  - component: {fileID: 1729060741435402268}
   - component: {fileID: 2558739996728698772}
   - component: {fileID: 4970415339643002048}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Police
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,22 +372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_target: {fileID: 0}
   m_patrolPoints: []
---- !u!58 &1729060741435402268
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7902639748412124466}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.5
 --- !u!50 &2558739996728698772
 Rigidbody2D:
   serializedVersion: 4
@@ -435,10 +418,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5, y: 0}
+    - - {x: -0.91097444, y: -1.1994451}
+      - {x: -0.0555681, y: -1.5278122}
+      - {x: 0.83205944, y: -1.3009512}
+      - {x: 1.3462422, y: -0.7200731}
       - {x: 3, y: 4.6}
       - {x: -3, y: 4.6}
-      - {x: -0.5, y: 0}
+      - {x: -1.388909, y: -0.5694572}
 --- !u!1 &8315634369798253157
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1730782959140848385}
   - component: {fileID: 3261734891874487509}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +518,7 @@ GameObject:
   - component: {fileID: 3020271001250263038}
   - component: {fileID: 4168007323755423846}
   - component: {fileID: 6996677521156526593}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HatCover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
