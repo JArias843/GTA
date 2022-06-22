@@ -2,17 +2,17 @@
 <GTA>
 	<Levels>
 		<Level_1>
-			<min_score> 100 </min_score>
+			<score> 100 </score>
 			<scene> 1 </scene>
 			<time> 60 </time>
 		</Level_1>
 		<Level_2>
-			<min_score> 120 </min_score>
+			<score> 120 </score>
 			<scene> 2 </scene>
 			<time> 50 </time>
 		</Level_2>
 		<Level_3>
-			<min_score> 150 </min_score>
+			<score> 150 </score>
 			<scene> 3 </scene>
 			<time> 40 </time>
 		</Level_3>

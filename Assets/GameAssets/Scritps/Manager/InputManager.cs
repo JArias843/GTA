@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,7 @@ public class InputManager : PersistentSingleton<InputManager>
             m_controlsAsset.Player.Interact.performed += OnInteractPressed;
             m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
             m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
+            m_controlsAsset.LoadScreen.PressContinue.performed += LoadScreen.instance.OnPressContinue;
         }
     }
     private void OnEnable()
@@ -40,6 +42,7 @@ public class InputManager : PersistentSingleton<InputManager>
         m_controlsAsset.Player.Interact.performed += OnInteractPressed;
         m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
         m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
+        m_controlsAsset.LoadScreen.PressContinue.performed += LoadScreen.instance.OnPressContinue;
     }
     private void OnDisable()
     {
@@ -49,14 +52,18 @@ public class InputManager : PersistentSingleton<InputManager>
             m_controlsAsset.Player.Interact.performed -= OnInteractPressed;
             m_controlsAsset.Player.Interact.canceled -= OnInteractReleased;
             m_controlsAsset.Player.DefensiveSkill.performed -= OnDefensiveSkillPressed;
+            m_controlsAsset.LoadScreen.PressContinue.performed -= LoadScreen.instance.OnPressContinue;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateMousePos(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
-        Move(m_controlsAsset.Player.Move.ReadValue<Vector2>());
+        if (SceneManager.GetActiveScene().name != "Level_Loader")
+        {
+            UpdateMousePos(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
+            Move(m_controlsAsset.Player.Move.ReadValue<Vector2>());
+        }
     }
 
     private void OnInteractPressed(InputAction.CallbackContext ctx)

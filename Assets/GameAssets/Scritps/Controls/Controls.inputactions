@@ -183,6 +183,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "LoadScreen",
+            "id": "41d77d99-1b38-4533-94ee-faee7c71592b",
+            "actions": [
+                {
+                    "name": "PressContinue",
+                    "type": "Button",
+                    "id": "f5eb698d-a414-4d5c-8eb9-8d07d006015b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "073ce840-7314-4f64-b8c5-68d2d34b4ab5",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressContinue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 3ce7acbb5f6f76e429019e9786c9ac5a
+guid: 6cd0401758aaf3645a810f209b532631
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 200
-  forceTextureCase: -1
+  forceTextureCase: 1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pricedown
+  - Diploma
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 1

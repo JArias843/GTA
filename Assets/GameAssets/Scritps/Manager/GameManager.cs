@@ -4,14 +4,15 @@ using UnityEngine;
 
 public struct LevelData
 {
-    public int m_minScore;
     public float m_time;
-    public string m_levelName;
+    public int m_score;
+    public int m_levelID;
 }
 
 public enum GameState
 {
     MainMenu,
+    LoadScreen,
     Playing,
     Pause,
     Victory,
@@ -22,7 +23,7 @@ public enum GameState
 public class GameManager : PersistentSingleton<GameManager>
 {
     public Player m_player;
-    public LevelData m_currentLevel;
+    public LevelData m_levelData;
     public GameState m_gameState;
 
     // Start is called before the first frame update
@@ -45,9 +46,16 @@ public class GameManager : PersistentSingleton<GameManager>
     {
         // Cargar pantalla de menu principal
     }
+
+    private void HandleLoadScreen()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     public void HandlePlaying()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void HandleUnpause()
@@ -78,6 +86,9 @@ public class GameManager : PersistentSingleton<GameManager>
         {
             case GameState.MainMenu:
                 HandleMainMenu();
+                break;
+            case GameState.LoadScreen:
+                HandleLoadScreen();
                 break;
             case GameState.Playing:
                 HandlePlaying();

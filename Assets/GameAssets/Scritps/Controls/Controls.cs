@@ -196,6 +196,33 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""LoadScreen"",
+            ""id"": ""41d77d99-1b38-4533-94ee-faee7c71592b"",
+            ""actions"": [
+                {
+                    ""name"": ""PressContinue"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5eb698d-a414-4d5c-8eb9-8d07d006015b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""073ce840-7314-4f64-b8c5-68d2d34b4ab5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressContinue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -206,6 +233,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_DefensiveSkill = m_Player.FindAction("DefensiveSkill", throwIfNotFound: true);
+        // LoadScreen
+        m_LoadScreen = asset.FindActionMap("LoadScreen", throwIfNotFound: true);
+        m_LoadScreen_PressContinue = m_LoadScreen.FindAction("PressContinue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -308,11 +338,48 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // LoadScreen
+    private readonly InputActionMap m_LoadScreen;
+    private ILoadScreenActions m_LoadScreenActionsCallbackInterface;
+    private readonly InputAction m_LoadScreen_PressContinue;
+    public struct LoadScreenActions
+    {
+        private @Controls m_Wrapper;
+        public LoadScreenActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PressContinue => m_Wrapper.m_LoadScreen_PressContinue;
+        public InputActionMap Get() { return m_Wrapper.m_LoadScreen; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LoadScreenActions set) { return set.Get(); }
+        public void SetCallbacks(ILoadScreenActions instance)
+        {
+            if (m_Wrapper.m_LoadScreenActionsCallbackInterface != null)
+            {
+                @PressContinue.started -= m_Wrapper.m_LoadScreenActionsCallbackInterface.OnPressContinue;
+                @PressContinue.performed -= m_Wrapper.m_LoadScreenActionsCallbackInterface.OnPressContinue;
+                @PressContinue.canceled -= m_Wrapper.m_LoadScreenActionsCallbackInterface.OnPressContinue;
+            }
+            m_Wrapper.m_LoadScreenActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PressContinue.started += instance.OnPressContinue;
+                @PressContinue.performed += instance.OnPressContinue;
+                @PressContinue.canceled += instance.OnPressContinue;
+            }
+        }
+    }
+    public LoadScreenActions @LoadScreen => new LoadScreenActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDefensiveSkill(InputAction.CallbackContext context);
+    }
+    public interface ILoadScreenActions
+    {
+        void OnPressContinue(InputAction.CallbackContext context);
     }
 }

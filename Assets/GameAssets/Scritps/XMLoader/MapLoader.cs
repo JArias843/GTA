@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Xml;
 
-public class MapLoader
+public class MapLoader : MonoBehaviour
 {
     public static void LoadMap(int index)
     {
         XmlDocument xmlDoc = new XmlDocument();
-        TextAsset asset = (TextAsset)Resources.Load("LevelData");
+        TextAsset asset = (TextAsset)Resources.Load("GameData");
         xmlDoc.LoadXml(asset.text);
 
         XmlNode root = xmlDoc.DocumentElement;
@@ -19,12 +18,14 @@ public class MapLoader
 
         XmlNode node = level[index];
 
-        GameManager.Instance.m_currentLevel.m_minScore =
-        int.Parse(node.SelectSingleNode("min_score").InnerText);
+        /*Set data*/
+        GameManager.Instance.m_levelData.m_score =
+        int.Parse(node.SelectSingleNode("score").InnerText);
 
-        GameManager.Instance.m_currentLevel.m_time =
+        GameManager.Instance.m_levelData.m_time =
         float.Parse(node.SelectSingleNode("time").InnerText);
 
-        SceneManager.LoadScene(int.Parse(node.SelectSingleNode("scene").InnerText));
+        GameManager.Instance.m_levelData.m_levelID = 
+        int.Parse(node.SelectSingleNode("scene").InnerText);
     }
 }
