@@ -30,7 +30,7 @@ public class SmokeBomb : MonoBehaviour
                 m_isCausingEffect = false;
                 if(m_player)
                 {
-                    //Set is not hidden 
+                    m_player.m_isVisible = true;
                 }
             }
         }
@@ -58,8 +58,8 @@ public class SmokeBomb : MonoBehaviour
         if (m_player != null)
         {
             if(!m_isCausingEffect)
-            { 
-                //Set is hidden
+            {
+                m_player.m_isVisible = false;
             }
         }
     }
@@ -68,7 +68,7 @@ public class SmokeBomb : MonoBehaviour
         Player bufferPlayer = collision.GetComponent<Player>();
         if (bufferPlayer != null && m_player != null && bufferPlayer == m_player)
         {
-            //Set is not hidden
+            m_player.m_isVisible = true;
         }
     }
 }
