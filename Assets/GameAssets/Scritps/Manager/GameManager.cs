@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 using Utils;
 
@@ -27,8 +28,13 @@ public enum GameState
 
 public class GameManager : TemporalSingleton<GameManager>
 {
-    [SerializeField] Player m_player;
+    [Header("Player")]
+    [SerializeField] public Player m_player;
+
+    [Header("UI")]
     [SerializeField] List<GameObject> m_layers;
+    [SerializeField] Text m_scoreText;
+    [SerializeField] Text m_timerText;
 
     private SData m_levelData;
     private GameState m_gameState;
@@ -89,6 +95,7 @@ public class GameManager : TemporalSingleton<GameManager>
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        Time.timeScale = 1;
         SetActiveOneLayer(0);
     }
 
@@ -96,14 +103,12 @@ public class GameManager : TemporalSingleton<GameManager>
     {
         MusicManager.Instance.ResumeBackgroundMusic();
         UpdateGameState(GameState.Playing);
-        Time.timeScale = 1;
     }
 
     private void HandlePause()
     {
         MusicManager.Instance.PauseBackgroundMusic();
         Time.timeScale = 0;
-
         SetActiveOneLayer(1);
     }
 

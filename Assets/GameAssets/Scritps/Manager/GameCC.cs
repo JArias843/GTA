@@ -30,7 +30,7 @@ public class GameCC : Utils.TemporalSingleton<GameCC>
 
     public void WriteCoinsStolen(int coins)
     {
-        m_coinsText.text = coins.ToString();
+        m_coinsText.text =  "$" + coins.ToString();
     }
     
     public int InitAbility(GameObject iconPrefab, int numCharges)
