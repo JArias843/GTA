@@ -32,7 +32,7 @@ public class GameManager : TemporalSingleton<GameManager>
     void Start()
     {
         UpdateGameState(GameState.Playing);
-        LevelData = MapLoader.LoadMap(LevelManager.Instance.LevelID);
+        LevelData = MapLoader.LoadMap(LevelManager.Instance.LevelID - 1);
     }
     private void HandleVictory()
     {
