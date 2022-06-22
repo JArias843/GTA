@@ -6,7 +6,7 @@
 			<scene> 1 </scene>
 			<timer> 60 </timer>
 			<smoke_bomb> 2 </smoke_bomb>
-			<speed_up> 0 </speed_up>
+			<speed_up> 2 </speed_up>
 			<stuns> 2 </stuns>
 		</Level_1>
 		<Level_2>
