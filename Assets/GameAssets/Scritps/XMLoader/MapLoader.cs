@@ -29,6 +29,9 @@ public class MapLoader : MonoBehaviour
 
         data.m_levelID = 
         int.Parse(node.SelectSingleNode("scene").InnerText);
+        
+        data.m_numSmokeBombs = 
+        int.Parse(node.SelectSingleNode("smoke_bomb").InnerText);
 
         return data;
     }

@@ -8,6 +8,7 @@ public struct SData
     public float m_timer;
     public int m_score;
     public int m_levelID;
+    public int m_numSmokeBombs;
 }
 
 public enum GameState
@@ -32,7 +33,11 @@ public class GameManager : TemporalSingleton<GameManager>
     void Start()
     {
         UpdateGameState(GameState.Playing);
-        LevelData = MapLoader.LoadMap(LevelManager.Instance.LevelID - 1);
+        LevelData = MapLoader.LoadMap(LevelManager.Instance.LevelID);
+        if(LevelData.m_numSmokeBombs != 0)
+        {
+            m_player.GetComponent<ThrowSmokeBomb>().InitSmokeBombs(LevelData.m_numSmokeBombs);
+        }
     }
     private void HandleVictory()
     {
