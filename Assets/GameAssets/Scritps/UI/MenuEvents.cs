@@ -14,6 +14,7 @@ public class MenuEvents : MonoBehaviour
     public void OnEvent_LevelLoader()
     {
         SceneManager.LoadScene("Level_Loader");
-        GameManager.Instance.UpdateGameState(GameState.LoadScreen);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

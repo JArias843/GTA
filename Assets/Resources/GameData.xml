@@ -5,16 +5,19 @@
 			<score> 100 </score>
 			<scene> 1 </scene>
 			<timer> 60 </timer>
+			<smoke_bomb> 2 </smoke_bomb>
 		</Level_1>
 		<Level_2>
 			<score> 120 </score>
 			<scene> 2 </scene>
 			<timer> 50 </timer>
+			<smoke_bomb> 3 </smoke_bomb>
 		</Level_2>
 		<Level_3>
 			<score> 150 </score>
 			<scene> 3 </scene>
 			<timer> 40 </timer>
+			<smoke_bomb> 4 </smoke_bomb>
 		</Level_3>
 	</Levels>
 </GTA>

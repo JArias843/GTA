@@ -5,8 +5,8 @@ using UnityEngine;
 public class MusicManager : PersistentSingleton<MusicManager>
 {	
     private float m_musicVolume;
-
-    public float  MusicVolume
+    private float m_sfxVolume;
+    public float MusicVolume
     {
         get
         {
@@ -20,8 +20,7 @@ public class MusicManager : PersistentSingleton<MusicManager>
             m_musicVolume = value;
         }
     }
-
-    public float  MusicVolumeSave
+    public float MusicVolumeSave
     {
         get
         {
@@ -36,10 +35,7 @@ public class MusicManager : PersistentSingleton<MusicManager>
             m_musicVolume = value;
         }
     }
-
-    private float m_sfxVolume;
-
-    public float  SfxVolume
+    public float SfxVolume
     {
         get
         {
@@ -53,8 +49,7 @@ public class MusicManager : PersistentSingleton<MusicManager>
             m_sfxVolume = value;
         }
     }
-
-    public float  SfxVolumeSave
+    public float SfxVolumeSave
     {
         get
         {
@@ -70,36 +65,38 @@ public class MusicManager : PersistentSingleton<MusicManager>
         }
     }
  
-    public  override void Awake                ()
+    public override void Awake()
 	{
         base.Awake();
         
-        m_soundFXDictionary      = new Dictionary<string, AudioClip>();
-        m_soundMusicDictionary   = new Dictionary<string, AudioClip>();
+        m_soundFXDictionary = new Dictionary<string, AudioClip>();
+        m_soundMusicDictionary = new Dictionary<string, AudioClip>();
 
         m_backgroundMusic = CreateAudioSource("Music", true);
-        m_sfxMusic        = CreateAudioSource("Sfx",   false);
+        m_sfxMusic = CreateAudioSource("Sfx", false);
 
-        MusicVolume        = PlayerPrefs.GetFloat(AppPlayerPrefKeys.MUSIC_VOLUME, 0.5f);
-        SfxVolume          = PlayerPrefs.GetFloat(AppPlayerPrefKeys.SFX_VOLUME  , 0.5f);
+        MusicVolume = PlayerPrefs.GetFloat(AppPlayerPrefKeys.MUSIC_VOLUME, 0.5f);
+        SfxVolume = PlayerPrefs.GetFloat(AppPlayerPrefKeys.SFX_VOLUME  , 0.5f);
 
-        AudioClip[] audioSfxVector   = Resources.LoadAll<AudioClip>(AppPaths.PATH_RESOURCE_SFX);
+        AudioClip[] audioSfxVector = Resources.LoadAll<AudioClip>(AppPaths.PATH_RESOURCE_SFX);
 
         for (int i = 0; i < audioSfxVector.Length; i++)
         {
             m_soundFXDictionary.Add(audioSfxVector[i].name, audioSfxVector[i]);
         }
 
-        audioSfxVector   = Resources.LoadAll<AudioClip>(AppPaths.PATH_RESOURCE_MUSIC);
+        audioSfxVector = Resources.LoadAll<AudioClip>(AppPaths.PATH_RESOURCE_MUSIC);
 
         for (int i = 0; i < audioSfxVector.Length; i++)
         {
             m_soundMusicDictionary.Add(audioSfxVector[i].name, audioSfxVector[i]);
         }
+
+        print(m_soundFXDictionary.Count);
 	}
 
        
-    public  void         PlayBackgroundMusic   (string audioName)
+    public void PlayBackgroundMusic(string audioName)
 	{
 		if (m_soundMusicDictionary.ContainsKey(audioName))
         {
@@ -109,7 +106,7 @@ public class MusicManager : PersistentSingleton<MusicManager>
         }
 	}
 
-    public  void         PlaySound             (string audioName)
+    public void PlaySound(string audioName)
 	{
         if (m_soundFXDictionary.ContainsKey(audioName))
         {
@@ -119,19 +116,25 @@ public class MusicManager : PersistentSingleton<MusicManager>
         }
 	}
 
-    public  void         StopBackgroundMusic   ()
+    public void StopBackgroundMusic()
 	{
 		if (m_backgroundMusic != null)
 			m_backgroundMusic.Stop();
 	}	
                        
-    public  void         PauseBackgroundMusic  ()
+    public void PauseBackgroundMusic()
 	{
 		if (m_backgroundMusic != null)
 			m_backgroundMusic.Pause();
 	}
 
-    private AudioSource  CreateAudioSource     (string name, bool isLoop)
+    public void ResumeBackgroundMusic()
+    {
+        if (m_backgroundMusic != null)
+            m_backgroundMusic.UnPause();
+    }
+
+    private AudioSource CreateAudioSource(string name, bool isLoop)
     {
         GameObject temporaryAudioHost         = new GameObject(name);
         AudioSource audioSource               = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource;  

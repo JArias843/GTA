@@ -19,25 +19,35 @@ public class MenuManager : TemporalSingleton<MenuManager>
     {
         UpdateState(EState.MAIN_MENU);
         m_canvasAnim = m_canvasObj.GetComponent<Animator>() ? m_canvasObj.GetComponent<Animator>() : null;
+        MusicManager.Instance.MusicVolume = 0.5f;
     }
 
     #region MAIN MENU
     public void LevelSelector()
     {
+        MusicManager.Instance.PlaySound("mouse_click");
         m_canvasAnim.SetTrigger("Open_LevelSelector");
     }
-    public void Exit_MainMenu() { Application.Quit(); }
+    public void Exit_MainMenu()
+    {
+        MusicManager.Instance.PlaySound("mouse_click"); 
+        Application.Quit();
+    }
     #endregion
 
     #region LEVEL SELECTOR
     public void Exit_LevelSelector()
     {
-        print("Exit");
+        MusicManager.Instance.PlaySound("mouse_click");
         m_canvasAnim.SetTrigger("Open_MainMenu");
     }
     public void LoadLevel(int index)
     {
         m_canvasAnim.SetTrigger("Fade_In");
+
+        MusicManager.Instance.PlaySound("level_selector");
+        MusicManager.Instance.PlayBackgroundMusic("LoadScreen_Theme");
+
         LevelManager.Instance.LevelID = index;
     }
     #endregion

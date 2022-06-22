@@ -48,12 +48,6 @@ public class GameManager : TemporalSingleton<GameManager>
     {
         // Cargar pantalla de menu principal
     }
-
-    private void HandleLoadScreen()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
     public void HandlePlaying()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -62,11 +56,13 @@ public class GameManager : TemporalSingleton<GameManager>
 
     public void HandleUnpause()
     {
+        MusicManager.Instance.ResumeBackgroundMusic();
         Time.timeScale = 1;
     }
 
     private void HandlePause()
     {
+        MusicManager.Instance.PauseBackgroundMusic();
         Time.timeScale = 0;
     }
     
@@ -83,9 +79,6 @@ public class GameManager : TemporalSingleton<GameManager>
         {
             case GameState.MainMenu:
                 HandleMainMenu();
-                break;
-            case GameState.LoadScreen:
-                HandleLoadScreen();
                 break;
             case GameState.Playing:
                 HandlePlaying();
