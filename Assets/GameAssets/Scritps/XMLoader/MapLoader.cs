@@ -35,6 +35,10 @@ public class MapLoader : MonoBehaviour
         
         data.m_numHnR= 
         int.Parse(node.SelectSingleNode("speed_up").InnerText);
+        
+        data.m_numDecoys= 
+        int.Parse(node.SelectSingleNode("decoy").InnerText);
+
 
         return data;
     }

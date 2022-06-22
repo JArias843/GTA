@@ -7,7 +7,7 @@
 			<timer> 60 </timer>
 			<smoke_bomb> 2 </smoke_bomb>
 			<speed_up> 2 </speed_up>
-			<stuns> 2 </stuns>
+			<decoy> 2 </decoy>
 		</Level_1>
 		<Level_2>
 			<score> 120 </score>
@@ -15,7 +15,7 @@
 			<timer> 50 </timer>
 			<smoke_bomb> 3 </smoke_bomb>
 			<speed_up> 2 </speed_up>
-			<stuns> 2 </stuns>
+			<decoy> 2 </decoy>
 		</Level_2>
 		<Level_3>
 			<score> 150 </score>
@@ -23,7 +23,7 @@
 			<timer> 40 </timer>
 			<smoke_bomb> 4 </smoke_bomb>
 			<speed_up> 2 </speed_up>
-			<stuns> 2 </stuns>
+			<decoy> 2 </decoy>
 		</Level_3>
 	</Levels>
 </GTA>

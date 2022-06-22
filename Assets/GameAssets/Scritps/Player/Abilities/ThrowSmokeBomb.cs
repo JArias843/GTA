@@ -5,9 +5,7 @@ using UnityEngine;
 public class ThrowSmokeBomb : AbilityParent
 {
     [SerializeField] private GameObject m_smokeBombPrefab;
-
     private SmokeBomb[] m_smokeBombs;
-
 
     public override void InitAbility(int numCharges, int abilityIndex)
     {
@@ -19,8 +17,8 @@ public class ThrowSmokeBomb : AbilityParent
         for (int i = 0; i < numCharges; i++)
         {
             m_smokeBombs[i] = Instantiate(m_smokeBombPrefab, spawnPos, Quaternion.identity).GetComponent<SmokeBomb>();
+            m_smokeBombs[i].gameObject.SetActive(false);
         }
-
     }
 
     protected override void AbilityEffect()
