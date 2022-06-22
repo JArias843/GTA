@@ -37,6 +37,7 @@ public class DropDecoy : AbilityParent
                     bufferColor.a = 255;
                     m_spriteRenderers[i].color = bufferColor;
                 }
+                GameManager.Instance.m_player.m_isVisible = true;
             }
         }
     }
@@ -63,12 +64,13 @@ public class DropDecoy : AbilityParent
     {
         Debug.Log(m_numCharges);
         m_dummies[m_numCharges - 1].gameObject.SetActive(true);
-        m_dummies[m_numCharges - 1].transform.position = transform.position - transform.right * m_distToSpawnDecoy;
-        m_dummies[m_numCharges - 1].transform.right = transform.right * -1f;
+        m_dummies[m_numCharges - 1].transform.position = transform.position + transform.right * m_distToSpawnDecoy;
+        m_dummies[m_numCharges - 1].transform.right = transform.right;
         m_dummies[m_numCharges - 1].StartWalking(m_mousePos);
 
         m_isInvisActive = true;
         m_currentTimer = m_invisibilityDuration;
+        GameManager.Instance.m_player.m_isVisible = false;
 
         Color bufferColor;
         for (int i = 0; i < m_spriteRenderers.Length; i++)
@@ -80,8 +82,6 @@ public class DropDecoy : AbilityParent
     }
     private void SaveMousePos(Vector2 _mousePos)
     {
-        m_mousePos.x = _mousePos.x; 
-        m_mousePos.y = _mousePos.y; 
-        m_mousePos.z = 0f; 
+        m_mousePos = new Vector3(_mousePos.x, _mousePos.y, transform.position.z);
     }
 }

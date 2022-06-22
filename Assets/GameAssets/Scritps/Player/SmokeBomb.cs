@@ -28,8 +28,10 @@ public class SmokeBomb : MonoBehaviour
             if (m_currentDuration < 0)
             {
                 m_isCausingEffect = false;
-                if(m_player)
+                Debug.Log(m_player.name);
+                if (m_player)
                 {
+                    Debug.Log("Stupid");
                     m_player.m_isVisible = true;
                 }
             }
@@ -39,8 +41,10 @@ public class SmokeBomb : MonoBehaviour
             if(!m_particles.isPlaying)
             {
                 gameObject.SetActive(false);
+                Debug.Log(m_player.name);
                 if (m_player)
                 {
+                    Debug.Log("Stupid");
                     m_player.m_isVisible = true;
                 }
                 Destroy(gameObject);
@@ -59,10 +63,10 @@ public class SmokeBomb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        m_player = collision.GetComponent<Player>();
-        if (m_player != null)
+        if (collision.GetComponent<Player>())
         {
-            if(m_isCausingEffect)
+            m_player = collision.GetComponent<Player>();
+            if (m_isCausingEffect)
             {
                 m_player.m_isVisible = false;
             }
@@ -70,10 +74,10 @@ public class SmokeBomb : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Player bufferPlayer = collision.GetComponent<Player>();
-        if (bufferPlayer != null && m_player != null && bufferPlayer == m_player)
+        if (collision.GetComponent<Player>())
         {
-            m_player.m_isVisible = true;
+            collision.GetComponent<Player>().m_isVisible = true;
+            m_player = null;
         }
     }
 }

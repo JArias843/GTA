@@ -95,8 +95,9 @@ public class Player : MonoBehaviour
 
     private void FaceToMouse(Vector2 _mousePos)
     {
-        mouseWorldPos = m_mainCamera.ScreenToWorldPoint(new Vector3(_mousePos.x, _mousePos.y, 0));
-        mouseWorldPos.z = m_transform.position.z;
+        mouseWorldPos = new Vector3(_mousePos.x, _mousePos.y, m_transform.position.z);
+        //mouseWorldPos = m_mainCamera.ScreenToWorldPoint(new Vector3(_mousePos.x, _mousePos.y, 0));
+        //mouseWorldPos.z = m_transform.position.z;
         
         m_transform.right = (mouseWorldPos - m_transform.position).normalized;
     }

@@ -87,7 +87,10 @@ public class InputManager : PersistentSingleton<InputManager>
     // Update is called once per frame
     void Update()
     {
-        UpdateMousePos?.Invoke(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
+        UpdateMousePos?.Invoke(new Vector2(worldPos.x, worldPos.y));
+        
+
         Move?.Invoke(m_controlsAsset.Player.Move.ReadValue<Vector2>());
     }
 

@@ -272,6 +272,7 @@ MonoBehaviour:
   m_maxSpeed: 5
   m_acceleration: 40
   m_breakAcceleration: 80
+  m_isVisible: 0
 --- !u!58 &7450049222248714254
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -376,7 +377,8 @@ MonoBehaviour:
   m_cooldown: 10
   m_dummyPrefab: {fileID: 6309949735568120361, guid: 2bf92ceeb80474a43a4e568e09c0b965, type: 3}
   m_invisibilityDuration: 1
-  m_spriteAlpha: 0>
+  m_spriteAlpha: 0.5
+  m_distToSpawnDecoy: 1
 --- !u!1 &7450049222254425493
 GameObject:
   m_ObjectHideFlags: 0

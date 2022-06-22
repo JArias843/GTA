@@ -43,20 +43,29 @@ public class Police : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player") && GameManager.Instance.m_player.m_isVisible)
+        if (collision.GetComponent<Dummy>())
         {
             m_isFollowing = true;
             m_target.target = collision.gameObject.transform;
-            Debug.Log("Enter");
+        }
+        else if(collision.GetComponent<Player>() && GameManager.Instance.m_player.m_isVisible && m_target != null)
+        {
+            m_isFollowing = true;
+            m_target.target = collision.gameObject.transform;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
-        if (collision.CompareTag("Player"))
+        if (collision.GetComponent<Dummy>() && m_target.GetComponent<Dummy>())
         {
-            Debug.Log("Exit");
+            m_isFollowing = false;
+            m_target.target = null;
+            Patrol();
+        }
+
+        if (collision.GetComponent<Player>() && m_target.GetComponent<Player>())
+        {
             m_isFollowing = false;
             m_target.target = null;
             Patrol();

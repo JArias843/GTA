@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 262089766430447626}
   - component: {fileID: 262089766430447624}
   - component: {fileID: 262089766430447627}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262089766707278787}
   - component: {fileID: 262089766707278784}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 262089767302542090}
   - component: {fileID: 262089767302542091}
   - component: {fileID: 262089767302542088}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262089767358381000}
   - component: {fileID: 262089767358381001}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Mascara
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 262089767436186168}
   - component: {fileID: 262089767436186118}
   - component: {fileID: 262089767436186169}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 262089767496135617}
   - component: {fileID: 262089767496135616}
   - component: {fileID: 262089767496135619}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 262089767571613852}
   - component: {fileID: 262089767571613853}
   - component: {fileID: 262089767571613850}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 262089767660410802}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 262089767757944718}
   - component: {fileID: 262089767757944719}
   - component: {fileID: 262089767757944716}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
