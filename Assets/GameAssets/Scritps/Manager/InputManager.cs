@@ -59,11 +59,8 @@ public class InputManager : PersistentSingleton<InputManager>
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name != "Level_Loader")
-        {
-            UpdateMousePos(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
-            Move(m_controlsAsset.Player.Move.ReadValue<Vector2>());
-        }
+        UpdateMousePos?.Invoke(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
+        Move?.Invoke(m_controlsAsset.Player.Move.ReadValue<Vector2>());
     }
 
     private void OnInteractPressed(InputAction.CallbackContext ctx)

@@ -4,17 +4,17 @@
 		<Level_1>
 			<score> 100 </score>
 			<scene> 1 </scene>
-			<time> 60 </time>
+			<timer> 60 </timer>
 		</Level_1>
 		<Level_2>
 			<score> 120 </score>
 			<scene> 2 </scene>
-			<time> 50 </time>
+			<timer> 50 </timer>
 		</Level_2>
 		<Level_3>
 			<score> 150 </score>
 			<scene> 3 </scene>
-			<time> 40 </time>
+			<timer> 40 </timer>
 		</Level_3>
 	</Levels>
 </GTA>

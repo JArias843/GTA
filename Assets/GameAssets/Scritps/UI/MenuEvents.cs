@@ -5,11 +5,11 @@ public class MenuEvents : MonoBehaviour
 {
     public void OnEvent_LevelSelector()
     {
-        MenuManager.Instance.UpdateState(MenuManager.EState.LEVEL_SELECTOR);
+        MenuManager.Instance.UpdateState(EState.LEVEL_SELECTOR);
     }
     public void OnEvent_Menu()
     {
-        MenuManager.Instance.UpdateState(MenuManager.EState.MAIN_MENU);
+        MenuManager.Instance.UpdateState(EState.MAIN_MENU);
     }
     public void OnEvent_LevelLoader()
     {

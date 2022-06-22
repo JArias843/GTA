@@ -36,8 +36,7 @@ public class LoadScreen : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         /*Set level*/
-        asyncOperation = SceneManager.LoadSceneAsync(GameManager.Instance.
-        m_levelData.m_levelID);
+        asyncOperation = SceneManager.LoadSceneAsync(LevelManager.Instance.LevelID + 1);
 
         asyncOperation.allowSceneActivation = false;
         fillLoading.fillAmount = asyncOperation.progress;
@@ -87,7 +86,6 @@ public class LoadScreen : MonoBehaviour
         if(textToContinueObj.activeSelf)
         {
             asyncOperation.allowSceneActivation = true;
-            GameManager.Instance.UpdateGameState(GameState.Playing);
             Destroy(textToContinueObj);
             Destroy(fillObj);
             reset = false;

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
-public struct LevelData
+public struct SData
 {
-    public float m_time;
+    public float m_timer;
     public int m_score;
     public int m_levelID;
 }
@@ -20,18 +21,19 @@ public enum GameState
     Exit
 }
 
-public class GameManager : PersistentSingleton<GameManager>
+public class GameManager : TemporalSingleton<GameManager>
 {
     public Player m_player;
-    public LevelData m_levelData;
-    public GameState m_gameState;
+    private SData m_levelData;
+    private GameState m_gameState;
+    public GameState GameState { get => m_gameState; set => m_gameState = value; }
+    public SData LevelData { get => m_levelData; set => m_levelData = value; }
 
-    // Start is called before the first frame update
     void Start()
     {
-        UpdateGameState(GameState.MainMenu);
+        UpdateGameState(GameState.Playing);
+        LevelData = MapLoader.LoadMap(LevelManager.Instance.LevelID);
     }
-
     private void HandleVictory()
     {
         // Cargar pantalla de victoria
@@ -67,11 +69,6 @@ public class GameManager : PersistentSingleton<GameManager>
     {
         Time.timeScale = 0;
     }
-
-    public void StartGame()
-    {
-        MapLoader.LoadMap(0);
-    }
     
     public void HandleExit()
     {
@@ -80,9 +77,9 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public void UpdateGameState(GameState _gameState)
     {
-        m_gameState = _gameState;
+        GameState = _gameState;
 
-        switch (m_gameState)
+        switch (GameState)
         {
             case GameState.MainMenu:
                 HandleMainMenu();

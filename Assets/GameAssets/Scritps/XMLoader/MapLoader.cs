@@ -3,8 +3,10 @@ using System.Xml;
 
 public class MapLoader : MonoBehaviour
 {
-    public static void LoadMap(int index)
+    public static SData LoadMap(int index)
     {
+        SData data = new SData();
+
         XmlDocument xmlDoc = new XmlDocument();
         TextAsset asset = (TextAsset)Resources.Load("GameData");
         xmlDoc.LoadXml(asset.text);
@@ -14,18 +16,20 @@ public class MapLoader : MonoBehaviour
         XmlNodeList level = list[0].ChildNodes;
 
         if (index > level.Count)
-            return;
+            return data;
 
         XmlNode node = level[index];
 
         /*Set data*/
-        GameManager.Instance.m_levelData.m_score =
+        data.m_score =
         int.Parse(node.SelectSingleNode("score").InnerText);
 
-        GameManager.Instance.m_levelData.m_time =
-        float.Parse(node.SelectSingleNode("time").InnerText);
+        data.m_timer = 
+        float.Parse(node.SelectSingleNode("timer").InnerText);
 
-        GameManager.Instance.m_levelData.m_levelID = 
+        data.m_levelID = 
         int.Parse(node.SelectSingleNode("scene").InnerText);
+
+        return data;
     }
 }

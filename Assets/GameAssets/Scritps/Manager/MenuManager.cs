@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Utils;
+public enum EState { MAIN_MENU, LEVEL_SELECTOR }
 
 public class MenuManager : TemporalSingleton<MenuManager>
 {
-    public enum EState { MAIN_MENU, LEVEL_SELECTOR }
-
-    public EState m_state;
-    public GameObject m_canvasObj;
-    public List<GameObject> m_layers;
+    private EState m_state;
+    [SerializeField] GameObject m_canvasObj;
+    [SerializeField] List<GameObject> m_layers;
 
     private Animator m_canvasAnim;
+    public EState State { get => m_state; set => m_state = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +38,13 @@ public class MenuManager : TemporalSingleton<MenuManager>
     public void LoadLevel(int index)
     {
         m_canvasAnim.SetTrigger("Fade_In");
-        MapLoader.LoadMap(index);
+        LevelManager.Instance.LevelID = index;
     }
     #endregion
 
     public void UpdateState(EState _newState)
     {
-        m_state = _newState;
+        State = _newState;
 
         switch (m_state)
         {

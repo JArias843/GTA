@@ -10,7 +10,7 @@ public class FollowTarget : MonoBehaviour
 
     void Start()
     {
-        m_target = GameManager.Instance.m_player.transform;
+        //m_target = GameManager.Instance.m_player.transform;
     }
     private void FixedUpdate()
     {
