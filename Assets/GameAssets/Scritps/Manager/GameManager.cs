@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 using Utils;
 
@@ -9,6 +11,8 @@ public struct SData
     public int m_score;
     public int m_levelID;
     public int m_numSmokeBombs;
+    public int m_numHnR;
+    public int m_numDecoys;
 }
 
 public enum GameState
@@ -24,7 +28,14 @@ public enum GameState
 
 public class GameManager : TemporalSingleton<GameManager>
 {
-    public Player m_player;
+    [Header("Player")]
+    [SerializeField] public Player m_player;
+
+    [Header("UI")]
+    [SerializeField] List<GameObject> m_layers;
+    [SerializeField] Text m_scoreText;
+    [SerializeField] Text m_timerText;
+
     private SData m_levelData;
     private GameState m_gameState;
     public GameState GameState { get => m_gameState; set => m_gameState = value; }
@@ -34,51 +45,76 @@ public class GameManager : TemporalSingleton<GameManager>
     {
         UpdateGameState(GameState.Playing);
         LevelData = MapLoader.LoadMap(LevelManager.Instance.LevelID);
-        if(LevelData.m_numSmokeBombs != 0)
+        InputManager.Instance.OnEscapePressedEvent += OnEscapePressed;
+
+        int numAbilities = 0;
+        if (LevelData.m_numSmokeBombs != 0)
         {
-            m_player.GetComponent<ThrowSmokeBomb>().InitSmokeBombs(LevelData.m_numSmokeBombs);
+            m_player.GetComponent<ThrowSmokeBomb>().InitAbility(LevelData.m_numSmokeBombs, numAbilities);
+            ++numAbilities;
+        }
+        if (LevelData.m_numHnR != 0)
+        {
+            m_player.GetComponent<HitAndRun>().InitAbility(LevelData.m_numHnR, numAbilities);
+            ++numAbilities;
+        }
+        if (LevelData.m_numDecoys != 0)
+        {
+            m_player.GetComponent<DropDecoy>().InitAbility(LevelData.m_numDecoys, numAbilities);
+            ++numAbilities;
         }
     }
     private void HandleVictory()
     {
         // Cargar pantalla de victoria
+        SetActiveOneLayer(2);
+
+        /*Active the victory layer*/
+        m_layers[2].transform.GetChild(0).gameObject?.SetActive(true);
+        m_layers[2].transform.GetChild(1).gameObject?.SetActive(false);
     }
 
     private void HandleLose()
     {
         // Cargar pantalla de derrota
+        SetActiveOneLayer(2);
+
+        /*Active the lose layer*/
+        m_layers[2].transform.GetChild(0).gameObject?.SetActive(false);
+        m_layers[2].transform.GetChild(1).gameObject?.SetActive(true);
     }
 
-    private void HandleMainMenu()
+    public void HandleMainMenu()
     {
         // Cargar pantalla de menu principal
+        SceneManager.LoadScene(0);
     }
+
     public void HandlePlaying()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        Time.timeScale = 1;
+        SetActiveOneLayer(0);
     }
 
     public void HandleUnpause()
     {
         MusicManager.Instance.ResumeBackgroundMusic();
-        Time.timeScale = 1;
+        UpdateGameState(GameState.Playing);
     }
 
     private void HandlePause()
     {
         MusicManager.Instance.PauseBackgroundMusic();
         Time.timeScale = 0;
-    }
-    
-    public void HandleExit()
-    {
-        Application.Quit();
+        SetActiveOneLayer(1);
     }
 
-    public void UpdateGameState(GameState _gameState)
+    public void UpdateGameState(GameState _state)
     {
-        GameState = _gameState;
+        GameState = _state;
 
         switch (GameState)
         {
@@ -97,11 +133,23 @@ public class GameManager : TemporalSingleton<GameManager>
             case GameState.Lose:
                 HandleLose();
                 break;
-            case GameState.Exit:
-                HandleExit();
-                break;
             default:
                 break;
         }
+    }
+
+    private void SetActiveOneLayer(int _index)
+    {
+        for (int i = 0; i < m_layers.Count; i++)
+        {
+            if (i == _index)
+                m_layers[i].SetActive(true);
+            else
+                m_layers[i].SetActive(false);
+        }
+    }
+    private void OnEscapePressed()
+    {
+        UpdateGameState(GameState.Pause);
     }
 }

@@ -18,20 +18,21 @@ public class Steal : MonoBehaviour
     EnemyWallet m_enemyWallet = null;
     bool m_isStealing = false;
 
-    private int m_coinsStolen = 0;
+    Player m_cmpPlayer;
+
+
 
     private void Awake()
     {
         m_transform = transform;
         m_results = new RaycastHit2D[1];
-        m_coinsStolen = 0;
+        m_cmpPlayer = GetComponent<Player>();
     }
     // Start is called before the first frame update
     void Start()
     {
         InputManager.Instance.OnInteractPressedEvent += StartStealing;
         InputManager.Instance.OnInteractReleasedEvent += StopStealing;
-        GameCC.Instance.WriteCoinsStolen(m_coinsStolen);
     }
     private void OnDestroy()
     {
@@ -48,9 +49,8 @@ public class Steal : MonoBehaviour
             {
                 if (m_enemyWallet.Player)
                 {
-                    m_coinsStolen += m_enemyWallet.Steal(m_maxStealPerTick);
+                    m_cmpPlayer.CoinsStolen += m_enemyWallet.Steal(m_maxStealPerTick);
                     m_currentTimeToSteal = m_timeToSteal;
-                    GameCC.Instance.WriteCoinsStolen(m_coinsStolen);
                 }
                 else 
                 {

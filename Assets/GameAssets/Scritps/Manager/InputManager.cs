@@ -19,18 +19,31 @@ public class InputManager : PersistentSingleton<InputManager>
     public NoParam OnInteractReleasedEvent;
     public NoParam OnDefensiveSkillPressedEvent;
     public NoParam OnAbility1PressedEvent;
+    public NoParam OnAbility2PressedEvent;
+    public NoParam OnAbility3PressedEvent;
+    public NoParam OnEscapePressedEvent;
+
+    bool m_isRegistered = false;
 
 
-    private void Awake()
+    public override void Awake()
     {
-        if(m_controlsAsset == null)
+        base.Awake();
+        if (m_controlsAsset == null)
         {
             m_controlsAsset = new Controls();
-            m_controlsAsset.Enable();
+        }
+        m_controlsAsset.Enable();
+        if (!m_isRegistered)
+        {
+            m_isRegistered = true;
             m_controlsAsset.Player.Interact.performed += OnInteractPressed;
             m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
             m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
             m_controlsAsset.Player.Ability1.performed += OnOnAbility1Pressed;
+            m_controlsAsset.Player.Ability2.performed += OnOnAbility2Pressed;
+            m_controlsAsset.Player.Ability3.performed += OnOnAbility3Pressed;
+            m_controlsAsset.Player.Escape.performed += OnEscapePressed;
         }
     }
     private void OnEnable()
@@ -40,20 +53,34 @@ public class InputManager : PersistentSingleton<InputManager>
             m_controlsAsset = new Controls();
         }
         m_controlsAsset.Enable();
-        m_controlsAsset.Player.Interact.performed += OnInteractPressed;
-        m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
-        m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
-        m_controlsAsset.Player.Ability1.performed += OnOnAbility1Pressed;
+        if (!m_isRegistered)
+        {
+            m_isRegistered = true;
+            m_controlsAsset.Player.Interact.performed += OnInteractPressed;
+            m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
+            m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
+            m_controlsAsset.Player.Ability1.performed += OnOnAbility1Pressed;
+            m_controlsAsset.Player.Ability2.performed += OnOnAbility2Pressed;
+            m_controlsAsset.Player.Ability3.performed += OnOnAbility3Pressed;
+            m_controlsAsset.Player.Escape.performed += OnEscapePressed;
+        }
     }
     private void OnDisable()
     {
         if (m_controlsAsset != null)
         {
             m_controlsAsset.Disable();
-            m_controlsAsset.Player.Interact.performed -= OnInteractPressed;
-            m_controlsAsset.Player.Interact.canceled -= OnInteractReleased;
-            m_controlsAsset.Player.DefensiveSkill.performed -= OnDefensiveSkillPressed;
-            m_controlsAsset.Player.Ability1.performed -= OnOnAbility1Pressed;
+            if (m_isRegistered)
+            {
+                m_isRegistered = false;
+                m_controlsAsset.Player.Interact.performed -= OnInteractPressed;
+                m_controlsAsset.Player.Interact.canceled -= OnInteractReleased;
+                m_controlsAsset.Player.DefensiveSkill.performed -= OnDefensiveSkillPressed;
+                m_controlsAsset.Player.Ability1.performed -= OnOnAbility1Pressed;
+                m_controlsAsset.Player.Ability2.performed -= OnOnAbility2Pressed;
+                m_controlsAsset.Player.Ability3.performed -= OnOnAbility3Pressed;
+                m_controlsAsset.Player.Escape.performed -= OnEscapePressed;
+            }
         }
     }
 
@@ -76,10 +103,22 @@ public class InputManager : PersistentSingleton<InputManager>
     {
         OnDefensiveSkillPressedEvent?.Invoke();
     }
-    
+
     private void OnOnAbility1Pressed(InputAction.CallbackContext ctx)
     {
         OnAbility1PressedEvent?.Invoke();
+    }
+    private void OnOnAbility2Pressed(InputAction.CallbackContext ctx)
+    {
+        OnAbility2PressedEvent?.Invoke();
+    }
+    private void OnOnAbility3Pressed(InputAction.CallbackContext ctx)
+    {
+        OnAbility3PressedEvent?.Invoke();
+    }
+    private void OnEscapePressed(InputAction.CallbackContext ctx)
+    {
+        OnEscapePressedEvent?.Invoke();
     }
 
 }

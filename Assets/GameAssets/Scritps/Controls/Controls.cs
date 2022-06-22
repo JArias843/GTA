@@ -57,6 +57,30 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ability2"",
+                    ""type"": ""Button"",
+                    ""id"": ""8061db2e-fef5-45ae-9611-e633243d83b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ability3"",
+                    ""type"": ""Button"",
+                    ""id"": ""65801c81-6bd9-40b6-9961-125d337e6ed9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""3be8fc73-62e4-4b71-a272-095bdc6465a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -213,6 +237,39 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Ability1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae9f1d1c-0dc5-4349-9401-b9b0d49a3a43"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""859badb8-1a2e-43e1-bf43-bb4b312063b2"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ff26409-459e-425a-8bf2-ab6e4b56bc64"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,6 +283,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_DefensiveSkill = m_Player.FindAction("DefensiveSkill", throwIfNotFound: true);
         m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
+        m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
+        m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
+        m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -280,6 +340,9 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_DefensiveSkill;
     private readonly InputAction m_Player_Ability1;
+    private readonly InputAction m_Player_Ability2;
+    private readonly InputAction m_Player_Ability3;
+    private readonly InputAction m_Player_Escape;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -289,6 +352,9 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @DefensiveSkill => m_Wrapper.m_Player_DefensiveSkill;
         public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
+        public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
+        public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
+        public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -313,6 +379,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Ability1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
                 @Ability1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
                 @Ability1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
+                @Ability2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility2;
+                @Ability2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility2;
+                @Ability2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility2;
+                @Ability3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility3;
+                @Ability3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility3;
+                @Ability3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility3;
+                @Escape.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -332,6 +407,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Ability1.started += instance.OnAbility1;
                 @Ability1.performed += instance.OnAbility1;
                 @Ability1.canceled += instance.OnAbility1;
+                @Ability2.started += instance.OnAbility2;
+                @Ability2.performed += instance.OnAbility2;
+                @Ability2.canceled += instance.OnAbility2;
+                @Ability3.started += instance.OnAbility3;
+                @Ability3.performed += instance.OnAbility3;
+                @Ability3.canceled += instance.OnAbility3;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -343,5 +427,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnDefensiveSkill(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
+        void OnAbility2(InputAction.CallbackContext context);
+        void OnAbility3(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }
