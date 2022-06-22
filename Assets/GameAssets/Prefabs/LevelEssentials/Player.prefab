@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: 7450049222248714249}
   - component: {fileID: 3565514777168553706}
   - component: {fileID: 3565514777168553707}
+  - component: {fileID: 7303315580976811276}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,9 +256,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4b509ca13ad4949a98587946e26d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_abilityID: 0
-  m_smokeBomb: {fileID: 0}
+  m_iconPrefab: {fileID: 0}
   m_cooldown: 15
+  m_smokeBombPrefab: {fileID: 0}
+--- !u!114 &7303315580976811276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450049222248714248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f74853e647fdf428b6bd45a62968f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_iconPrefab: {fileID: 2603127748213925909, guid: a45fb006c654a2148a12305babb000b2, type: 3}
+  m_cooldown: 7
+  m_effectDuration: 4
+  m_maxSpeedMultiplier: 1.5
+  m_accMultiplier: 1.5
+  m_amountToStealOnCollision: 100
 --- !u!1 &7450049222254425493
 GameObject:
   m_ObjectHideFlags: 0

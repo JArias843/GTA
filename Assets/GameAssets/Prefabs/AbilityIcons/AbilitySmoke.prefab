@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 2603127748213925910}
   - component: {fileID: 2603127748213925908}
   m_Layer: 5
-  m_Name: Ability
+  m_Name: AbilitySmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

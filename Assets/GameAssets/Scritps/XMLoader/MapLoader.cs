@@ -32,6 +32,9 @@ public class MapLoader : MonoBehaviour
         
         data.m_numSmokeBombs = 
         int.Parse(node.SelectSingleNode("smoke_bomb").InnerText);
+        
+        data.m_numHnR= 
+        int.Parse(node.SelectSingleNode("speed_up").InnerText);
 
         return data;
     }
