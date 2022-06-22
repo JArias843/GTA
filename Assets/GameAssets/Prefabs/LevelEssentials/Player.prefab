@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3565514777168553707}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,8 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4b509ca13ad4949a98587946e26d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_abilityID: 0
-  m_smokeBomb: {fileID: 0}
+  m_smokeBombPrefab: {fileID: 0}
+  m_iconPrefab: {fileID: 0}
   m_cooldown: 15
 --- !u!1 &7450049222254425493
 GameObject:

@@ -19,6 +19,7 @@ public class PoliceManager : PersistentSingleton<PoliceManager>
 
     public PoliceState m_policeState;
     public List<GameObject> m_list;
+    public List<Transform> m_patrolPoints;
     private int index;
     private const int MAX_ENEMIES = 3;
 
@@ -36,7 +37,7 @@ public class PoliceManager : PersistentSingleton<PoliceManager>
         }
 
         UpdatePoliceState(PoliceState.One);
-        UpdatePoliceState(PoliceState.SpeedUp);
+        //UpdatePoliceState(PoliceState.SpeedUp);
     }
 
     public void HandleZero()
@@ -53,7 +54,7 @@ public class PoliceManager : PersistentSingleton<PoliceManager>
         index = 0;
         m_list[index].SetActive(!m_list[index].activeInHierarchy);
         // TODO: Ajustar posicion fuera de la camara
-        m_list[index].transform.position = new Vector3(0, 0, 0);
+        m_list[index].transform.position = new Vector3(-20, -20, 0);
     }
     
     public void HandleTwo()

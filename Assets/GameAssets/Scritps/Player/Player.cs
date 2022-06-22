@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private Vector2 m_currentVelocity = Vector2.zero;
     private Vector2 m_velocityDirection = Vector2.zero;
     private Vector3 mouseWorldPos;
+    public bool m_isVisible;
 
     //References
     private Camera m_mainCamera;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     {
         m_transform = GetComponent<Transform>();
         m_cmpRB = GetComponent<Rigidbody2D>();
+        m_isVisible = true;
     }
 
     // Start is called before the first frame update
