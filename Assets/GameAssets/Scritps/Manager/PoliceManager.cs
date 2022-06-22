@@ -13,7 +13,7 @@ public enum PoliceState
     Three
 }
 
-public class PoliceManager : MonoBehaviour
+public class PoliceManager : PersistentSingleton<PoliceManager>
 {
     public GameObject prefabRef;
 
@@ -34,6 +34,9 @@ public class PoliceManager : MonoBehaviour
             enemy.SetActive(false);
             m_list.Add(enemy);
         }
+
+        UpdatePoliceState(PoliceState.One);
+        UpdatePoliceState(PoliceState.SpeedUp);
     }
 
     public void HandleZero()
@@ -49,20 +52,25 @@ public class PoliceManager : MonoBehaviour
     {
         index = 0;
         m_list[index].SetActive(!m_list[index].activeInHierarchy);
+        // TODO: Ajustar posicion fuera de la camara
+        m_list[index].transform.position = new Vector3(0, 0, 0);
     }
     
     public void HandleTwo()
     {
         index = 1;
         m_list[index].SetActive(!m_list[index].activeInHierarchy);
+        // TODO: Ajustar posicion fuera de la camara
+        m_list[index].transform.position = new Vector3(10, 5, 0);
     }
-    
+
     public void HandleRangeUp()
     {
         for (int i = 0; i < MAX_ENEMIES; i++)
         {
             if (m_list[i].GetComponent<CircleCollider2D>())
             {
+                // TODO: Ajustar rango
                 m_list[i].GetComponent<CircleCollider2D>().radius = 6;
             }
         }
@@ -75,7 +83,7 @@ public class PoliceManager : MonoBehaviour
             if (m_list[i].GetComponent<AIPath>())
             {
                 AIPath path = m_list[i].GetComponent<AIPath>();
-                path.maxSpeed = 3;
+                path.maxSpeed = 7;
             }
         }
     }
