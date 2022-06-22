@@ -18,6 +18,7 @@ public class InputManager : PersistentSingleton<InputManager>
     public NoParam OnInteractPressedEvent;
     public NoParam OnInteractReleasedEvent;
     public NoParam OnDefensiveSkillPressedEvent;
+    public NoParam OnAbility1PressedEvent;
 
 
     private void Awake()
@@ -29,7 +30,7 @@ public class InputManager : PersistentSingleton<InputManager>
             m_controlsAsset.Player.Interact.performed += OnInteractPressed;
             m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
             m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
-            m_controlsAsset.LoadScreen.PressContinue.performed += LoadScreen.instance.OnPressContinue;
+            m_controlsAsset.Player.Ability1.performed += OnOnAbility1Pressed;
         }
     }
     private void OnEnable()
@@ -42,7 +43,7 @@ public class InputManager : PersistentSingleton<InputManager>
         m_controlsAsset.Player.Interact.performed += OnInteractPressed;
         m_controlsAsset.Player.Interact.canceled += OnInteractReleased;
         m_controlsAsset.Player.DefensiveSkill.performed += OnDefensiveSkillPressed;
-        m_controlsAsset.LoadScreen.PressContinue.performed += LoadScreen.instance.OnPressContinue;
+        m_controlsAsset.Player.Ability1.performed += OnOnAbility1Pressed;
     }
     private void OnDisable()
     {
@@ -52,7 +53,7 @@ public class InputManager : PersistentSingleton<InputManager>
             m_controlsAsset.Player.Interact.performed -= OnInteractPressed;
             m_controlsAsset.Player.Interact.canceled -= OnInteractReleased;
             m_controlsAsset.Player.DefensiveSkill.performed -= OnDefensiveSkillPressed;
-            m_controlsAsset.LoadScreen.PressContinue.performed -= LoadScreen.instance.OnPressContinue;
+            m_controlsAsset.Player.Ability1.performed -= OnOnAbility1Pressed;
         }
     }
 
@@ -65,14 +66,20 @@ public class InputManager : PersistentSingleton<InputManager>
 
     private void OnInteractPressed(InputAction.CallbackContext ctx)
     {
-        OnInteractPressedEvent();
+        OnInteractPressedEvent?.Invoke();
     }
     private void OnInteractReleased(InputAction.CallbackContext ctx)
     {
-        OnInteractReleasedEvent();
+        OnInteractReleasedEvent?.Invoke();
     }
     private void OnDefensiveSkillPressed(InputAction.CallbackContext ctx)
     {
-        OnDefensiveSkillPressedEvent();
+        OnDefensiveSkillPressedEvent?.Invoke();
     }
+    
+    private void OnOnAbility1Pressed(InputAction.CallbackContext ctx)
+    {
+        OnAbility1PressedEvent?.Invoke();
+    }
+
 }

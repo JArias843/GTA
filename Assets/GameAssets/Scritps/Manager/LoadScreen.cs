@@ -23,6 +23,20 @@ public class LoadScreen : MonoBehaviour
         instance = this;
         fillLoading.fillAmount = 0;
     }
+    private void Start()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.OnInteractPressedEvent += OnPressContinue;
+        }
+    }
+    private void OnDestroy()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.OnInteractPressedEvent -= OnPressContinue;
+        }
+    }
 
     void Update()
     {
@@ -81,7 +95,7 @@ public class LoadScreen : MonoBehaviour
         }
     }
 
-    public void OnPressContinue(InputAction.CallbackContext ctx)
+    public void OnPressContinue()
     {
         if(textToContinueObj.activeSelf)
         {

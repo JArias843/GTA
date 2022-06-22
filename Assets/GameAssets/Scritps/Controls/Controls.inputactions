@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Ability1",
+                    "type": "Button",
+                    "id": "cb9ac256-cb82-4d53-bbb7-e2acf462ac71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -181,31 +189,15 @@
                     "action": "DefensiveSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "LoadScreen",
-            "id": "41d77d99-1b38-4533-94ee-faee7c71592b",
-            "actions": [
-                {
-                    "name": "PressContinue",
-                    "type": "Button",
-                    "id": "f5eb698d-a414-4d5c-8eb9-8d07d006015b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "073ce840-7314-4f64-b8c5-68d2d34b4ab5",
-                    "path": "<Keyboard>/e",
+                    "id": "db919c53-5a75-49dc-91c7-d2df033a5c04",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PressContinue",
+                    "action": "Ability1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

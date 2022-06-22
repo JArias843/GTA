@@ -49,6 +49,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ability1"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb9ac256-cb82-4d53-bbb7-e2acf462ac71"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -194,31 +202,15 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""DefensiveSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""LoadScreen"",
-            ""id"": ""41d77d99-1b38-4533-94ee-faee7c71592b"",
-            ""actions"": [
-                {
-                    ""name"": ""PressContinue"",
-                    ""type"": ""Button"",
-                    ""id"": ""f5eb698d-a414-4d5c-8eb9-8d07d006015b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""073ce840-7314-4f64-b8c5-68d2d34b4ab5"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""db919c53-5a75-49dc-91c7-d2df033a5c04"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PressContinue"",
+                    ""action"": ""Ability1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -233,9 +225,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_DefensiveSkill = m_Player.FindAction("DefensiveSkill", throwIfNotFound: true);
-        // LoadScreen
-        m_LoadScreen = asset.FindActionMap("LoadScreen", throwIfNotFound: true);
-        m_LoadScreen_PressContinue = m_LoadScreen.FindAction("PressContinue", throwIfNotFound: true);
+        m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -289,6 +279,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Mouse;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_DefensiveSkill;
+    private readonly InputAction m_Player_Ability1;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -297,6 +288,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @DefensiveSkill => m_Wrapper.m_Player_DefensiveSkill;
+        public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -318,6 +310,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @DefensiveSkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefensiveSkill;
                 @DefensiveSkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefensiveSkill;
                 @DefensiveSkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefensiveSkill;
+                @Ability1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
+                @Ability1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
+                @Ability1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -334,52 +329,19 @@ public class @Controls : IInputActionCollection, IDisposable
                 @DefensiveSkill.started += instance.OnDefensiveSkill;
                 @DefensiveSkill.performed += instance.OnDefensiveSkill;
                 @DefensiveSkill.canceled += instance.OnDefensiveSkill;
+                @Ability1.started += instance.OnAbility1;
+                @Ability1.performed += instance.OnAbility1;
+                @Ability1.canceled += instance.OnAbility1;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-
-    // LoadScreen
-    private readonly InputActionMap m_LoadScreen;
-    private ILoadScreenActions m_LoadScreenActionsCallbackInterface;
-    private readonly InputAction m_LoadScreen_PressContinue;
-    public struct LoadScreenActions
-    {
-        private @Controls m_Wrapper;
-        public LoadScreenActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PressContinue => m_Wrapper.m_LoadScreen_PressContinue;
-        public InputActionMap Get() { return m_Wrapper.m_LoadScreen; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LoadScreenActions set) { return set.Get(); }
-        public void SetCallbacks(ILoadScreenActions instance)
-        {
-            if (m_Wrapper.m_LoadScreenActionsCallbackInterface != null)
-            {
-                @PressContinue.started -= m_Wrapper.m_LoadScreenActionsCallbackInterface.OnPressContinue;
-                @PressContinue.performed -= m_Wrapper.m_LoadScreenActionsCallbackInterface.OnPressContinue;
-                @PressContinue.canceled -= m_Wrapper.m_LoadScreenActionsCallbackInterface.OnPressContinue;
-            }
-            m_Wrapper.m_LoadScreenActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @PressContinue.started += instance.OnPressContinue;
-                @PressContinue.performed += instance.OnPressContinue;
-                @PressContinue.canceled += instance.OnPressContinue;
-            }
-        }
-    }
-    public LoadScreenActions @LoadScreen => new LoadScreenActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDefensiveSkill(InputAction.CallbackContext context);
-    }
-    public interface ILoadScreenActions
-    {
-        void OnPressContinue(InputAction.CallbackContext context);
+        void OnAbility1(InputAction.CallbackContext context);
     }
 }
