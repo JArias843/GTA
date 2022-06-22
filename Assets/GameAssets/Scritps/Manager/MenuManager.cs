@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 using Utils;
 public enum EState { MAIN_MENU, LEVEL_SELECTOR }
@@ -10,16 +11,16 @@ public class MenuManager : TemporalSingleton<MenuManager>
     private EState m_state;
     [SerializeField] GameObject m_canvasObj;
     [SerializeField] List<GameObject> m_layers;
-
-    private Animator m_canvasAnim;
+    [SerializeField] Animator m_canvasAnim;
     public EState State { get => m_state; set => m_state = value; }
 
     // Start is called before the first frame update
     void Start()
     {
         UpdateState(EState.MAIN_MENU);
-        m_canvasAnim = m_canvasObj.GetComponent<Animator>() ? m_canvasObj.GetComponent<Animator>() : null;
+        LevelManager.Instance.LevelID = -1;
         MusicManager.Instance.MusicVolume = 0.5f;
+        Time.timeScale = 1;
     }
 
     #region MAIN MENU
@@ -43,6 +44,9 @@ public class MenuManager : TemporalSingleton<MenuManager>
     }
     public void LoadLevel(int index)
     {
+        m_canvasAnim.ResetTrigger("Open_MainMenu");
+        m_canvasAnim.ResetTrigger("Fade_In");
+        m_canvasAnim.ResetTrigger("Open_LevelSelector");
         m_canvasAnim.SetTrigger("Fade_In");
 
         MusicManager.Instance.PlaySound("level_selector");

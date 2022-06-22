@@ -33,13 +33,13 @@ public class GameManager : TemporalSingleton<GameManager>
 
     [Header("UI")]
     [SerializeField] List<GameObject> m_layers;
-    [SerializeField] Text m_scoreText;
-    [SerializeField] Text m_timerText;
 
     private SData m_levelData;
     private GameState m_gameState;
     public GameState GameState { get => m_gameState; set => m_gameState = value; }
     public SData LevelData { get => m_levelData; set => m_levelData = value; }
+
+    private bool m_isFinish = false;
 
     void Start()
     {
@@ -50,7 +50,8 @@ public class GameManager : TemporalSingleton<GameManager>
         int numAbilities = 0;
         if (LevelData.m_numSmokeBombs != 0)
         {
-            m_player.GetComponent<ThrowSmokeBomb>().InitAbility(LevelData.m_numSmokeBombs, numAbilities);
+            m_player.GetComponent<ThrowSmokeBomb>().InitAbility
+                (LevelData.m_numSmokeBombs, numAbilities);
             ++numAbilities;
         }
         if (LevelData.m_numHnR != 0)
@@ -64,6 +65,28 @@ public class GameManager : TemporalSingleton<GameManager>
             ++numAbilities;
         }
     }
+
+    private void Update()
+    {
+        m_levelData.m_timer -= Time.deltaTime;
+        GameCC.Instance.UpdateTimer(m_levelData.m_timer);
+
+        if(!m_isFinish)
+        {
+            if (m_levelData.m_timer <= 0 && m_player.CoinsStolen >= m_levelData.m_score)
+            {
+                UpdateGameState(GameState.Victory);
+                m_isFinish = true;
+            }
+
+            else if (m_levelData.m_timer <= 0 && m_player.CoinsStolen < m_levelData.m_score)
+            {
+                UpdateGameState(GameState.Lose);
+                m_isFinish = true;
+            }
+        }
+    }
+
     private void HandleVictory()
     {
         // Cargar pantalla de victoria
@@ -72,6 +95,11 @@ public class GameManager : TemporalSingleton<GameManager>
         /*Active the victory layer*/
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(true);
         m_layers[2].transform.GetChild(1).gameObject?.SetActive(false);
+
+        MusicManager.Instance.PauseBackgroundMusic();
+        MusicManager.Instance.PlaySound("Victory");
+
+        Time.timeScale = 0;
     }
 
     private void HandleLose()
@@ -82,6 +110,11 @@ public class GameManager : TemporalSingleton<GameManager>
         /*Active the lose layer*/
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(false);
         m_layers[2].transform.GetChild(1).gameObject?.SetActive(true);
+
+        MusicManager.Instance.PauseBackgroundMusic();
+        MusicManager.Instance.PlaySound("Lose");
+
+        Time.timeScale = 0;
     }
 
     public void HandleMainMenu()

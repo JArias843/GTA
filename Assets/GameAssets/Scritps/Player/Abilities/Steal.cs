@@ -20,8 +20,6 @@ public class Steal : MonoBehaviour
 
     Player m_cmpPlayer;
 
-
-
     private void Awake()
     {
         m_transform = transform;

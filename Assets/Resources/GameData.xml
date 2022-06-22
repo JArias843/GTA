@@ -2,7 +2,7 @@
 <GTA>
 	<Levels>
 		<Level_1>
-			<score> 100 </score>
+			<score> 150 </score>
 			<scene> 1 </scene>
 			<timer> 60 </timer>
 			<smoke_bomb> 2 </smoke_bomb>
