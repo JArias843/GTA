@@ -11,7 +11,7 @@ public struct SData
     public int m_levelID;
     public int m_numSmokeBombs;
     public int m_numHnR;
-    public int m_numStuns;
+    public int m_numDecoys;
 }
 
 public enum GameState
@@ -52,11 +52,11 @@ public class GameManager : TemporalSingleton<GameManager>
             m_player.GetComponent<HitAndRun>().InitAbility(LevelData.m_numHnR, numAbilities);
             ++numAbilities;
         }
-        //if(LevelData.m_numSmokeBombs != 0)
-        //{
-        //    m_player.GetComponent<ThrowSmokeBomb>().InitAbility(LevelData.m_numSmokeBombs, numAbilities);
-        //    ++numAbilities;
-        //}
+        if (LevelData.m_numDecoys != 0)
+        {
+            m_player.GetComponent<DropDecoy>().InitAbility(LevelData.m_numDecoys, numAbilities);
+            ++numAbilities;
+        }
     }
     private void HandleVictory()
     {

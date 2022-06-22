@@ -474,26 +474,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1972908308, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
+    - target: {fileID: 1490156372, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
+      propertyPath: m_distToSpawnDecoy
+      value: 1.4
       objectReference: {fileID: 0}
-    - target: {fileID: 3565514777168553707, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
-      propertyPath: m_cooldown
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3565514777168553707, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
-      propertyPath: m_smokeBomb
-      value: 
-      objectReference: {fileID: 8398558760804123353, guid: 9304ddf2fdc4005489cb13ca371b8374, type: 3}
-    - target: {fileID: 3565514777168553707, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
-      propertyPath: m_iconPrefab
-      value: 
-      objectReference: {fileID: 2603127748213925909, guid: 06e24d821b93c3f489e7d7c384a9530c, type: 3}
-    - target: {fileID: 3565514777168553707, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
-      propertyPath: m_smokeBombPrefab
-      value: 
-      objectReference: {fileID: 8398558760804123298, guid: 9304ddf2fdc4005489cb13ca371b8374, type: 3}
     - target: {fileID: 7450049222248714248, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
       propertyPath: m_Name
       value: Player
