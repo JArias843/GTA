@@ -107,7 +107,6 @@ public class InputManager : PersistentSingleton<InputManager>
     {
         if(Time.timeScale == 1)
         {
-            Debug.Log("COSOASOASO");
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(m_controlsAsset.Player.Mouse.ReadValue<Vector2>());
             UpdateMousePos?.Invoke(new Vector2(worldPos.x, worldPos.y));
         

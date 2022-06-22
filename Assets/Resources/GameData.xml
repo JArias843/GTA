@@ -4,7 +4,7 @@
 		<Level_1>
 			<score> 150 </score>
 			<scene> 1 </scene>
-			<timer> 2 </timer>
+			<timer> 60 </timer>
 			<smoke_bomb> 2 </smoke_bomb>
 			<speed_up> 2 </speed_up>
 			<decoy> 2 </decoy>
