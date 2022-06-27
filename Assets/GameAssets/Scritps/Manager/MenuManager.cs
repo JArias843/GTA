@@ -19,7 +19,7 @@ public class MenuManager : TemporalSingleton<MenuManager>
     {
         UpdateState(EState.MAIN_MENU);
         LevelManager.Instance.LevelID = -1;
-        MusicManager.Instance.MusicVolume = 0.5f;
+        MusicManager.Instance.MusicVolume = 0.2f;
         MusicManager.Instance.PlayBackgroundMusic("Main-Theme");
         Time.timeScale = 1;
     }

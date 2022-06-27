@@ -26095,7 +26095,7 @@ GameObject:
   - component: {fileID: 907168677}
   - component: {fileID: 907168676}
   m_Layer: 5
-  m_Name: Level_01_Frame
+  m_Name: Level_01_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38092,7 +38092,7 @@ GameObject:
   - component: {fileID: 1347903127}
   - component: {fileID: 1347903126}
   m_Layer: 5
-  m_Name: Level_02_Frame
+  m_Name: Level_02_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38156,7 +38156,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1347903127}
   m_OnClick:
     m_PersistentCalls:
