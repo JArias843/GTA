@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class Police : MonoBehaviour
 {
-    public AIDestinationSetter m_target;
+    [SerializeField] private AIDestinationSetter m_destinationSetter;
     public List<Transform> m_patrolPoints;
     private int m_currentIndex;
     private bool m_followPlayer;
@@ -16,8 +16,8 @@ public class Police : MonoBehaviour
 
     public void Awake()
     {
-        m_target = GetComponent<AIDestinationSetter>();
-        m_target.target = null;
+        m_destinationSetter = GetComponent<AIDestinationSetter>();
+        m_destinationSetter.target = null;
     }
 
     public void Start()
@@ -31,7 +31,7 @@ public class Police : MonoBehaviour
         if (m_followPlayer && !GameManager.Instance.m_player.m_isVisible && !m_followDummy)
         {
             m_followPlayer = false;
-            m_target.target = null;
+            m_destinationSetter.target = null;
             Patrol();
         }
 
@@ -44,7 +44,7 @@ public class Police : MonoBehaviour
         }
 
         if (m_followPlayer && 
-            Vector2.Distance(transform.position, GameManager.Instance.m_player.transform.position) <= m_killRange &&
+            Vector3.Distance(transform.position, GameManager.Instance.m_player.transform.position) <= m_killRange &&
             !GameManager.Instance.IsFinish)
         {
             GetComponent<AudioSource>()?.Play();
@@ -58,29 +58,29 @@ public class Police : MonoBehaviour
         {
             m_followPlayer = false;
             m_followDummy = true;
-            m_target.target = collision.gameObject.transform;
+            m_destinationSetter.target = collision.gameObject.transform;
         }
-        else if (collision.GetComponent<Player>() && GameManager.Instance.m_player.m_isVisible && m_target != null)
+        else if (collision.GetComponent<Player>() && GameManager.Instance.m_player.m_isVisible && m_destinationSetter != null)
         {
             m_followPlayer = true;
             m_followDummy = false;
-            m_target.target = collision.gameObject.transform;
+            m_destinationSetter.target = collision.gameObject.transform;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Dummy>() && m_target.target == collision.gameObject.transform)
+        if (collision.GetComponent<Dummy>() && m_destinationSetter.target == collision.gameObject.transform)
         {
             m_followDummy = false;
-            m_target.target = null;
+            m_destinationSetter.target = null;
             Patrol();
         }
 
-        if (collision.GetComponent<Player>() && m_target.target == collision.gameObject.transform)
+        if (collision.GetComponent<Player>() && m_destinationSetter.target == collision.gameObject.transform)
         {
             m_followPlayer = false;
-            m_target.target = null;
+            m_destinationSetter.target = null;
             Patrol();
         }
     }
@@ -92,7 +92,7 @@ public class Police : MonoBehaviour
             int tempSeed = (int)System.DateTime.Now.Ticks;
             Random.InitState(tempSeed);
             m_currentIndex = Random.Range(0, m_patrolPoints.Count);
-            m_target.target = m_patrolPoints[m_currentIndex];
+            m_destinationSetter.target = m_patrolPoints[m_currentIndex];
         }
     }
 }

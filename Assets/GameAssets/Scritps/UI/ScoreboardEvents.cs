@@ -34,5 +34,8 @@ public class ScoreboardEvents : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("Level_Loader");
         LevelManager.Instance.LevelID++;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
