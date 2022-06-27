@@ -36,7 +36,7 @@ public class PoliceManager : PersistentSingleton<PoliceManager>
             m_list.Add(enemy);
         }
 
-        UpdatePoliceState(PoliceState.One);
+        //UpdatePoliceState(PoliceState.One);
         //UpdatePoliceState(PoliceState.SpeedUp);
     }
 
