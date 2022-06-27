@@ -10,14 +10,14 @@ public class FollowTarget : MonoBehaviour
 
     void Start()
     {
-        if(!m_target)
+        if (!m_target)
         {
             m_target = GameManager.Instance ?
             GameManager.Instance.m_player.transform : null;
         }
-        
 
-        if(GetComponent<Camera>())
+
+        if (GetComponent<Camera>())
             GetComponent<Camera>().orthographicSize = 10;
     }
     private void FixedUpdate()

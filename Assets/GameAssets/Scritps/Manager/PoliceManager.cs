@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public enum PoliceState
 {
@@ -39,7 +40,8 @@ public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
 
     private void Update()
     {
-        if (GameManager.Instance.LevelData.m_timer <= 25)
+        if (SceneManager.GetActiveScene().name != "Main_Menu" && 
+        GameManager.Instance.LevelData.m_timer <= 25)
         {
             HandleSpeedUp();
         }
