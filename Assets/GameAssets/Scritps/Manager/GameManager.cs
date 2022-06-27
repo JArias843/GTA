@@ -174,6 +174,7 @@ public class GameManager : TemporalSingleton<GameManager>
                 m_layers[i].SetActive(false);
         }
     }
+
     private void OnEscapePressed()
     {
         UpdateGameState(GameState.Pause);
