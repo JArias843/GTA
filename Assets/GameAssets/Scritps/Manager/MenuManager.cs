@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +20,7 @@ public class MenuManager : TemporalSingleton<MenuManager>
         UpdateState(EState.MAIN_MENU);
         LevelManager.Instance.LevelID = -1;
         MusicManager.Instance.MusicVolume = 0.5f;
+        MusicManager.Instance.PlayBackgroundMusic("Main-Theme");
         Time.timeScale = 1;
     }
 
