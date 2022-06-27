@@ -237,17 +237,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d48ae6ae4e15962499508779fc23f3f3, type: 3}
---- !u!114 &175545068 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7324472607963867578, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
-  m_PrefabInstance: {fileID: 431115456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed4063b33d53d144b985b9ecff64c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &374241878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312,30 +301,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6379430471637632733, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 175545068}
-    - target: {fileID: 6379430471637632733, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 6379430471637632733, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameCC, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6379430472169368448, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 175545068}
-    - target: {fileID: 6379430472169368448, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResumeGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 6379430472169368448, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameCC, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7324472607963867569, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
       propertyPath: m_Name
       value: Canvas-GameUI

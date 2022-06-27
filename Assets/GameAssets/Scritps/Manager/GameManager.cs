@@ -33,10 +33,11 @@ public class GameManager : TemporalSingleton<GameManager>
 
     private SData m_levelData;
     private GameState m_gameState;
+    private bool m_isFinish = false;
     public GameState GameState { get => m_gameState; set => m_gameState = value; }
     public SData LevelData { get => m_levelData; set => m_levelData = value; }
+    public bool IsFinish { get => m_isFinish; set => m_isFinish = value; }
 
-    private bool m_isFinish = false;
 
     void Start()
     {

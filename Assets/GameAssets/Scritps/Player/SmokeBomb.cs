@@ -46,7 +46,12 @@ public class SmokeBomb : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
+
+        if(GameManager.Instance != null)
+        {
+            if (GameManager.Instance.IsFinish)
+                GetComponent<AudioSource>().Stop();
+        }
     }
 
     public void Throw(Vector3 _position)

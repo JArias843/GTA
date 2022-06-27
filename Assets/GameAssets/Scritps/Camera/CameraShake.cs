@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    private bool m_isExecuting = false;
-    public bool IsExecuting { get => m_isExecuting; set => m_isExecuting = value; }
-
     private void Awake()
     {
         Random.InitState(42);
@@ -17,20 +14,23 @@ public class CameraShake : MonoBehaviour
         Vector3 originalPos = transform.localPosition;
 
         float elapsed = 0.0f;
-        IsExecuting = true;
 
         while (elapsed < _duration)
         {
-            float x = Random.Range(-0.1f, 0.1f) * _magnitude;
-            float y = Random.Range(-0.1f, 0.1f) * _magnitude;
+            float x = Random.Range(1f, -1f) * _magnitude;
+            float y = Random.Range(-1f, 1f) * _magnitude;
 
-            transform.position = new Vector3(x, y, originalPos.z);
+            Vector3 newPosition;
+            newPosition.x = originalPos.x + x;
+            newPosition.y = originalPos.y + y;
+            newPosition.z = originalPos.z;
+
+            transform.position = newPosition;
             elapsed += Time.deltaTime;
 
             yield return null;
         }
 
         transform.localPosition = originalPos;
-        IsExecuting = false;
     }
 }

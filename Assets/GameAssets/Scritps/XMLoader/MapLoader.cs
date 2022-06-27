@@ -8,7 +8,7 @@ public class MapLoader : MonoBehaviour
         SData data = new SData();
 
         XmlDocument xmlDoc = new XmlDocument();
-        TextAsset asset = (TextAsset)Resources.Load("GameData");
+        TextAsset asset = (TextAsset)Resources.Load("data");
         xmlDoc.LoadXml(asset.text);
 
         XmlNode root = xmlDoc.DocumentElement;

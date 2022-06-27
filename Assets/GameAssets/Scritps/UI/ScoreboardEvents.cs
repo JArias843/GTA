@@ -22,6 +22,7 @@ public class ScoreboardEvents : MonoBehaviour
     public void OnRestartLevel()
     {
         Time.timeScale = 1;
+        MusicManager.Instance?.ResumeBackgroundMusic();
         SceneManager.LoadScene(LevelManager.Instance.LevelID + 1);
     }
 
