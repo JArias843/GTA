@@ -8,7 +8,8 @@ public class Police : MonoBehaviour
     public AIDestinationSetter m_target;
     public List<Transform> m_patrolPoints;
     private int m_currentIndex;
-    private bool m_isFollowing;
+    private bool m_followPlayer;
+    private bool m_followDummy;
 
     public void Awake()
     {
@@ -24,17 +25,17 @@ public class Police : MonoBehaviour
 
     public void Update()
     {
-        if (m_isFollowing && !GameManager.Instance.m_player.m_isVisible)
+        if (m_followPlayer && !GameManager.Instance.m_player.m_isVisible && !m_followDummy)
         {
             Debug.Log("NoVisible");
-            m_isFollowing = false;
+            m_followPlayer = false;
             m_target.target = null;
             Patrol();
         }
 
         if (Vector2.Distance(m_patrolPoints[m_currentIndex].position, transform.position) <= 0.5)
         {
-            if (!m_isFollowing)
+            if (!m_followPlayer)
             {
                 Patrol();
             }
@@ -45,28 +46,30 @@ public class Police : MonoBehaviour
     {
         if (collision.GetComponent<Dummy>())
         {
-            m_isFollowing = true;
+            m_followPlayer = false;
+            m_followDummy = true;
             m_target.target = collision.gameObject.transform;
         }
-        else if(collision.GetComponent<Player>() && GameManager.Instance.m_player.m_isVisible && m_target != null)
+        else if (collision.GetComponent<Player>() && GameManager.Instance.m_player.m_isVisible && m_target != null)
         {
-            m_isFollowing = true;
+            m_followPlayer = true;
+            m_followDummy = false;
             m_target.target = collision.gameObject.transform;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Dummy>() && m_target.GetComponent<Dummy>())
+        if (collision.GetComponent<Dummy>() && m_target.target == collision.gameObject.transform)
         {
-            m_isFollowing = false;
+            m_followDummy = false;
             m_target.target = null;
             Patrol();
         }
 
-        if (collision.GetComponent<Player>() && m_target.GetComponent<Player>())
+        if (collision.GetComponent<Player>() && m_target.target == collision.gameObject.transform)
         {
-            m_isFollowing = false;
+            m_followPlayer = false;
             m_target.target = null;
             Patrol();
         }
@@ -74,7 +77,7 @@ public class Police : MonoBehaviour
 
     private void Patrol()
     {
-        if (!m_isFollowing)
+        if (!m_followPlayer && !m_followDummy)
         {
             int tempSeed = (int)System.DateTime.Now.Ticks;
             Random.InitState(tempSeed);
