@@ -11289,7 +11289,7 @@ GameObject:
   - component: {fileID: 387090997}
   - component: {fileID: 387090996}
   m_Layer: 7
-  m_Name: GameObject
+  m_Name: PoliceManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11325,6 +11325,7 @@ MonoBehaviour:
   - {fileID: 208021937}
   - {fileID: 282583370}
   - {fileID: 1039206755}
+  m_emergencyCall: {fileID: 3155503719206763068, guid: d48ae6ae4e15962499508779fc23f3f3, type: 3}
 --- !u!4 &387090997
 Transform:
   m_ObjectHideFlags: 0

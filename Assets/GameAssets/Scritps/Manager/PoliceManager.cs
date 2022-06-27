@@ -29,7 +29,8 @@ public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
     // Start is called before the first frame update
     void Start()
     {
-        m_emergencyCall = Instantiate(m_emergencyCall.gameObject, new Vector3(10000, 10000, 10000), Quaternion.identity).transform;
+        m_emergencyCall = Instantiate(m_emergencyCall.gameObject, 
+        new Vector3(10000, 10000, 10000), Quaternion.identity).transform;
         m_policeState = PoliceState.Zero;
         index = -1;
 
