@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
             m_currentAccMultiplier = value;
         }  
     }
-
     public int CoinsStolen { get => m_coinsStolen;
         set
         {
@@ -75,6 +74,7 @@ public class Player : MonoBehaviour
             InputManager.Instance.Move += Move;
             InputManager.Instance.UpdateMousePos += FaceToMouse;
         }
+
         m_mainCamera = Camera.main;
         m_coinsStolen = 0;
         GameCC.Instance.WriteCoinsStolen(m_coinsStolen);

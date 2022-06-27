@@ -64,9 +64,10 @@ public class Steal : MonoBehaviour
         if(Physics2D.RaycastNonAlloc(m_transform.position, m_transform.right, m_results, m_stealDistance, m_layer) != 0)
         {
             m_enemyWallet = m_results[0].collider.GetComponent<EnemyWallet>();
+
             if (m_enemyWallet)
             {
-                if(m_enemyWallet.Player)
+                if (m_enemyWallet.Player)
                 {
                     m_isStealing = true;
                     m_enemyWallet.ToggleProgressBar(true);

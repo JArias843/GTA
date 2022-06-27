@@ -23,10 +23,12 @@ public class GameCC : Utils.TemporalSingleton<GameCC>
     {
         m_abilities[_abilityID].UpdateFillAmount(_percentage);
     }
+
     public void ToggleSkillActiveFilter(int _abilityID)
     {
         m_abilities[_abilityID].ToggleActiveFilter();
     }
+
     public void ToggleRechargeBar(int _abilityID)
     {
         m_abilities[_abilityID].ToggleRechargeBar();
@@ -57,4 +59,7 @@ public class GameCC : Utils.TemporalSingleton<GameCC>
     {
 
     }
+
+    public void ResumeGame() { GameManager.Instance?.HandleUnpause(); }
+    public void ExitGame() { GameManager.Instance?.HandleMainMenu(); }
 }

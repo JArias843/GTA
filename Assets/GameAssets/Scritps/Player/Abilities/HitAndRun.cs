@@ -52,14 +52,16 @@ public class HitAndRun : AbilityParent
             Debug.Log(collision.collider.name);
             if (collision.collider.GetComponentInParent<EnemyWallet>())
             {
-                Debug.Log("b");
                 //Stun other
                 m_cmpPlayer.CoinsStolen += 
-                    collision.collider.GetComponentInParent<EnemyWallet>().Steal(m_amountToStealOnCollision);
+                 collision.collider.GetComponentInParent<EnemyWallet>().Steal(m_amountToStealOnCollision);
+
                 m_isHnRActive = false;
                 m_cmpPlayer.CurrentSpeedMultiplier -= m_maxSpeedMultiplier;
                 m_cmpPlayer.CurrentAccMultiplier -= m_accMultiplier;
+
                 StartCoroutine(m_cameraShake.Shake(0.10f, 0.3f));
+                MusicManager.Instance?.PlaySound("hit_and_run");
             }
         }
     }

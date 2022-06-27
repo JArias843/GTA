@@ -25,7 +25,6 @@ public class InputManager : PersistentSingleton<InputManager>
 
     bool m_isRegistered = false;
 
-
     public override void Awake()
     {
         base.Awake();

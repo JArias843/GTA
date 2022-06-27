@@ -10,9 +10,10 @@ public class AppDevelopFlag
 
 public class AppPaths
 {
-	public static readonly string  	PERSISTENT_DATA      = Application.persistentDataPath;
-	public static readonly string	PATH_RESOURCE_SFX    = "Sounds/MenuSFX/";
-    public static readonly string	PATH_RESOURCE_MUSIC  = "Sounds/Music/";
+	public static readonly string  	PERSISTENT_DATA			 = Application.persistentDataPath;
+	public static readonly string	PATH_RESOURCE_SFX		 = "Sounds/MenuSFX/";
+	public static readonly string	PATH_RESOURCE_SFX_PLAYER = "Sounds/PlayerSFX/";
+    public static readonly string	PATH_RESOURCE_MUSIC		 = "Sounds/Music/";
 }
 
 public class AppScenes

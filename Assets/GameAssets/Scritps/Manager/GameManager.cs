@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine;
 using Utils;
 
@@ -17,8 +16,6 @@ public struct SData
 
 public enum GameState
 {
-    MainMenu,
-    LoadScreen,
     Playing,
     Pause,
     Victory,
@@ -70,6 +67,9 @@ public class GameManager : TemporalSingleton<GameManager>
     {
         if(!m_isFinish)
         {
+            m_levelData.m_timer -= Time.deltaTime;
+            GameCC.Instance?.UpdateTimer(m_levelData.m_timer);
+
             if (m_levelData.m_timer <= 0 && m_player.CoinsStolen >= m_levelData.m_score)
             {
                 UpdateGameState(GameState.Victory);
@@ -81,9 +81,6 @@ public class GameManager : TemporalSingleton<GameManager>
                 UpdateGameState(GameState.Lose);
                 m_isFinish = true;
             }
-
-            m_levelData.m_timer -= Time.deltaTime;
-            GameCC.Instance.UpdateTimer(m_levelData.m_timer);
         }
     }
 
@@ -96,8 +93,8 @@ public class GameManager : TemporalSingleton<GameManager>
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(true);
         m_layers[2].transform.GetChild(1).gameObject?.SetActive(false);
 
-        MusicManager.Instance.PauseBackgroundMusic();
-        MusicManager.Instance.PlaySound("Victory");
+        MusicManager.Instance?.PauseBackgroundMusic();
+        MusicManager.Instance?.PlaySound("Victory");
 
         Time.timeScale = 0;
     }
@@ -111,8 +108,8 @@ public class GameManager : TemporalSingleton<GameManager>
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(false);
         m_layers[2].transform.GetChild(1).gameObject?.SetActive(true);
 
-        MusicManager.Instance.PauseBackgroundMusic();
-        MusicManager.Instance.PlaySound("Lose");
+        MusicManager.Instance?.PauseBackgroundMusic();
+        MusicManager.Instance?.PlaySound("Lose");
 
         Time.timeScale = 0;
     }
@@ -134,13 +131,13 @@ public class GameManager : TemporalSingleton<GameManager>
 
     public void HandleUnpause()
     {
-        MusicManager.Instance.ResumeBackgroundMusic();
+        MusicManager.Instance?.ResumeBackgroundMusic();
         UpdateGameState(GameState.Playing);
     }
 
     private void HandlePause()
     {
-        MusicManager.Instance.PauseBackgroundMusic();
+        MusicManager.Instance?.PauseBackgroundMusic();
         Time.timeScale = 0;
         SetActiveOneLayer(1);
     }
@@ -151,9 +148,6 @@ public class GameManager : TemporalSingleton<GameManager>
 
         switch (GameState)
         {
-            case GameState.MainMenu:
-                HandleMainMenu();
-                break;
             case GameState.Playing:
                 HandlePlaying();
                 break;
@@ -165,8 +159,6 @@ public class GameManager : TemporalSingleton<GameManager>
                 break;
             case GameState.Lose:
                 HandleLose();
-                break;
-            default:
                 break;
         }
     }
