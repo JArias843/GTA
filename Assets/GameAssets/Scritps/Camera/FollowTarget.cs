@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class FollowTarget : MonoBehaviour
 {
-    private Transform m_target;
+    [SerializeField] private Transform m_target;
     private float smoothTime = 0.3f;
     private Vector3 velocity = Vector3.zero;
 
     void Start()
     {
-        m_target = GameManager.Instance ?
-        GameManager.Instance.m_player.transform : null;
+        if(!m_target)
+        {
+            m_target = GameManager.Instance ?
+            GameManager.Instance.m_player.transform : null;
+        }
+        
 
         if(GetComponent<Camera>())
-            GetComponent<Camera>().orthographicSize = 7;
+            GetComponent<Camera>().orthographicSize = 10;
     }
     private void FixedUpdate()
     {
