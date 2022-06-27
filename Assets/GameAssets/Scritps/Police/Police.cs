@@ -11,6 +11,9 @@ public class Police : MonoBehaviour
     private bool m_followPlayer;
     private bool m_followDummy;
 
+    [SerializeField]
+    float m_killRange;
+
     public void Awake()
     {
         m_target = GetComponent<AIDestinationSetter>();
@@ -38,6 +41,12 @@ public class Police : MonoBehaviour
             {
                 Patrol();
             }
+        }
+
+        if (m_followPlayer && 
+            Vector2.Distance(transform.position, GameManager.Instance.m_player.transform.position) <= m_killRange)
+        {
+            GameManager.Instance.UpdateGameState(GameState.Lose);
         }
     }
 

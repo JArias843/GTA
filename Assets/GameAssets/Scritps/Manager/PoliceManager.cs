@@ -13,7 +13,7 @@ public enum PoliceState
     Three
 }
 
-public class PoliceManager : PersistentSingleton<PoliceManager>
+public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
 {
     public GameObject prefabRef;
 

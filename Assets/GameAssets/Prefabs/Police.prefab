@@ -372,6 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_target: {fileID: 0}
   m_patrolPoints: []
+  m_killRange: 1.5
 --- !u!50 &2558739996728698772
 Rigidbody2D:
   serializedVersion: 4
