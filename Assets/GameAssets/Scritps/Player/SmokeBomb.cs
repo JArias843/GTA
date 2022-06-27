@@ -49,8 +49,11 @@ public class SmokeBomb : MonoBehaviour
 
         if(GameManager.Instance != null)
         {
-            if (GameManager.Instance.IsFinish)
-                GetComponent<AudioSource>().Stop();
+            if (GameManager.Instance.IsFinish || 
+            GameManager.Instance.GameState == GameState.Pause)
+                GetComponent<AudioSource>().Pause();
+            else
+                GetComponent<AudioSource>().UnPause();
         }
     }
 

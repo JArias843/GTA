@@ -60,6 +60,14 @@ public class GameCC : Utils.TemporalSingleton<GameCC>
 
     }
 
-    public void ResumeGame() { GameManager.Instance?.HandleUnpause(); }
-    public void ExitGame() { GameManager.Instance?.HandleMainMenu(); }
+    public void ResumeGame() 
+    {
+        MusicManager.Instance?.PlaySound("mouse_click");
+        GameManager.Instance?.HandleUnpause();
+    }
+    public void ExitGame()
+    {
+        MusicManager.Instance?.PlaySound("mouse_click");
+        GameManager.Instance?.HandleMainMenu(); 
+    }
 }
