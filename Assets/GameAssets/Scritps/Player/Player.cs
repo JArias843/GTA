@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
             {
                 value = 0;
             }
+
             GameCC.Instance.WriteCoinsStolen(value);
             m_coinsStolen = value;
         }

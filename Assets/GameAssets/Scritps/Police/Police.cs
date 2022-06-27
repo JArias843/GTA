@@ -47,6 +47,7 @@ public class Police : MonoBehaviour
             Vector2.Distance(transform.position, GameManager.Instance.m_player.transform.position) <= m_killRange &&
             !GameManager.Instance.IsFinish)
         {
+            GetComponent<AudioSource>()?.Play();
             GameManager.Instance.UpdateGameState(GameState.Lose);
         }
     }

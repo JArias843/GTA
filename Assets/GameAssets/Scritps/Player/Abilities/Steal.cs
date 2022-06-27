@@ -8,6 +8,7 @@ public class Steal : MonoBehaviour
     [SerializeField] private int  m_maxStealPerTick = 2;
 
     private float m_currentTimeToSteal = 0f;
+    private int m_currentMoneyStolen = 0;
 
     [SerializeField] private float m_stealDistance;
     [SerializeField] private LayerMask m_layer;
@@ -47,8 +48,14 @@ public class Steal : MonoBehaviour
             {
                 if (m_enemyWallet.Player)
                 {
-                    m_cmpPlayer.CoinsStolen += m_enemyWallet.Steal(m_maxStealPerTick);
+                    m_currentMoneyStolen = m_enemyWallet.Steal(m_maxStealPerTick);
+                    m_cmpPlayer.CoinsStolen += m_currentMoneyStolen;
                     m_currentTimeToSteal = m_timeToSteal;
+
+                    if(m_currentMoneyStolen != 0)
+                        MusicManager.Instance?.PlaySound("steal_money");
+                    else
+                        MusicManager.Instance?.PlaySound("error");
                 }
                 else 
                 {

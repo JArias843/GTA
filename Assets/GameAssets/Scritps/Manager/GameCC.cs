@@ -7,8 +7,11 @@ public class GameCC : Utils.TemporalSingleton<GameCC>
 {
     [SerializeField] private Text m_coinsText;
     [SerializeField] private Text m_timer;
-    [SerializeField] private Transform m_abilityBar;
 
+    [SerializeField] private Text m_coinsText_border;
+    [SerializeField] private Text m_timer_border;
+
+    [SerializeField] private Transform m_abilityBar;
     [SerializeField] private List<Text> m_texts;
 
     private List<AbilityIcon> m_abilities;
@@ -37,6 +40,7 @@ public class GameCC : Utils.TemporalSingleton<GameCC>
     public void WriteCoinsStolen(int coins)
     {
         m_coinsText.text =  "$" + coins.ToString();
+        m_coinsText_border.text = "$" + coins.ToString();
 
         for (int i = 0; i < m_texts.Count; i++)
         {
@@ -47,6 +51,7 @@ public class GameCC : Utils.TemporalSingleton<GameCC>
     public void UpdateTimer(float seconds)
     {
         m_timer.text = "Time " + Mathf.RoundToInt(seconds);
+        m_timer_border.text = "Time " + Mathf.RoundToInt(seconds);
     }
     
     public int InitAbility(GameObject iconPrefab, int numCharges)
