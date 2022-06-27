@@ -27,7 +27,6 @@ public class Police : MonoBehaviour
     {
         if (m_followPlayer && !GameManager.Instance.m_player.m_isVisible && !m_followDummy)
         {
-            Debug.Log("NoVisible");
             m_followPlayer = false;
             m_target.target = null;
             Patrol();

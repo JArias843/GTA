@@ -66,7 +66,6 @@ public class DropDecoy : AbilityParent
 
     protected override void AbilityEffect()
     {
-        Debug.Log(m_numCharges);
         m_dummies[m_numCharges - 1].gameObject.SetActive(true);
         m_dummies[m_numCharges - 1].transform.position = transform.position + transform.right * m_distToSpawnDecoy;
         m_dummies[m_numCharges - 1].transform.right = transform.right;

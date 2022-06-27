@@ -49,7 +49,6 @@ public class HitAndRun : AbilityParent
     {
         if(m_isHnRActive)
         {
-            Debug.Log(collision.collider.name);
             if (collision.collider.GetComponentInParent<EnemyWallet>())
             {
                 //Stun other
