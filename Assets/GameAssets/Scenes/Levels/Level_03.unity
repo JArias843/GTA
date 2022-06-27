@@ -8936,6 +8936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe480513aa3536641a36c9aec042a9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_target: {fileID: 0}
 --- !u!114 &462525168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10862,6 +10863,10 @@ PrefabInstance:
     - target: {fileID: 262089767358381003, guid: 2230ad324b92ea3498ec9708d61edcd1, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 262089767571613850, guid: 2230ad324b92ea3498ec9708d61edcd1, type: 3}
+      propertyPath: m_walletValue
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 262089767571613852, guid: 2230ad324b92ea3498ec9708d61edcd1, type: 3}
       propertyPath: m_RootOrder
@@ -14320,7 +14325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e644f5ee01f7147a49af9a7009a1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabRef: {fileID: 0}
+  prefabRef: {fileID: 291223698}
   m_policeState: 0
   m_list:
   - {fileID: 1870648444}
@@ -21296,6 +21301,10 @@ PrefabInstance:
     - target: {fileID: 262089767302542091, guid: 2230ad324b92ea3498ec9708d61edcd1, type: 3}
       propertyPath: m_Color.r
       value: 0.1509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 262089767571613850, guid: 2230ad324b92ea3498ec9708d61edcd1, type: 3}
+      propertyPath: m_walletValue
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 262089767571613852, guid: 2230ad324b92ea3498ec9708d61edcd1, type: 3}
       propertyPath: m_RootOrder

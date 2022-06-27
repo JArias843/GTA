@@ -21,6 +21,7 @@ public class EnemyWallet : MonoBehaviour
     private void ResetWallet()
     {
         m_currentWalletValue = m_walletValue;
+        m_progressBar.fillAmount = 0f;
     }
 
     public void ToggleProgressBar(bool _setActive)
