@@ -1,8 +1,6 @@
-    using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 public enum EState { MAIN_MENU, LEVEL_SELECTOR }
 
@@ -12,6 +10,7 @@ public class MenuManager : TemporalSingleton<MenuManager>
     [SerializeField] GameObject m_canvasObj;
     [SerializeField] List<GameObject> m_layers;
     [SerializeField] Animator m_canvasAnim;
+    [SerializeField] List<Button> m_buttons;
     public EState State { get => m_state; set => m_state = value; }
 
     // Start is called before the first frame update
@@ -45,13 +44,15 @@ public class MenuManager : TemporalSingleton<MenuManager>
     }
     public void LoadLevel(int index)
     {
-        m_canvasAnim.ResetTrigger("Open_MainMenu");
-        m_canvasAnim.ResetTrigger("Fade_In");
-        m_canvasAnim.ResetTrigger("Open_LevelSelector");
         m_canvasAnim.SetTrigger("Fade_In");
 
         MusicManager.Instance.PlaySound("level_selector");
         MusicManager.Instance.PlayBackgroundMusic("LoadScreen_Theme");
+
+        for (int i = 0; i < m_buttons.Count; i++)
+        {
+            m_buttons[i].enabled = false;
+        }
 
         LevelManager.Instance.LevelID = index;
     }
@@ -64,13 +65,22 @@ public class MenuManager : TemporalSingleton<MenuManager>
         switch (m_state)
         {
             case EState.MAIN_MENU:
-                m_layers[0].SetActive(true);
-                m_layers[1].SetActive(false);
+                SetActiveOneLayer(0);
                 break;
             case EState.LEVEL_SELECTOR:
-                m_layers[0].SetActive(false);
-                m_layers[1].SetActive(true);
+                SetActiveOneLayer(1);
                 break;
+        }
+    }
+
+    private void SetActiveOneLayer(int _index)
+    {
+        for (int i = 0; i < m_layers.Count; i++)
+        {
+            if (i == _index)
+                m_layers[i].SetActive(true);
+            else
+                m_layers[i].SetActive(false);
         }
     }
 }
