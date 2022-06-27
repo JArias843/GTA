@@ -28,10 +28,8 @@ public class SmokeBomb : MonoBehaviour
             if (m_currentDuration < 0)
             {
                 m_isCausingEffect = false;
-                Debug.Log(m_player.name);
                 if (m_player)
                 {
-                    Debug.Log("Stupid");
                     m_player.m_isVisible = true;
                 }
             }
@@ -41,10 +39,8 @@ public class SmokeBomb : MonoBehaviour
             if(!m_particles.isPlaying)
             {
                 gameObject.SetActive(false);
-                Debug.Log(m_player.name);
                 if (m_player)
                 {
-                    Debug.Log("Stupid");
                     m_player.m_isVisible = true;
                 }
                 Destroy(gameObject);
