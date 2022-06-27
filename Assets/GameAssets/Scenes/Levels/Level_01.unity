@@ -8648,6 +8648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PostProcess
       objectReference: {fileID: 0}
+    - target: {fileID: 4136571841524135182, guid: 41d4a9ee3de153a44a609f6fe6f54036, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d4a9ee3de153a44a609f6fe6f54036, type: 3}
 --- !u!1 &834295442
@@ -12802,6 +12806,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6379430470490919622, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6379430471741894082, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7324472607963867569, guid: 09010aa70e3c1884e9561f6ed16dbd05, type: 3}
       propertyPath: m_Name
       value: Canvas-GameUI
