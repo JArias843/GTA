@@ -10,7 +10,7 @@
 			<decoy> 2 </decoy>
 		</Level_1>
 		<Level_2>
-			<score> 120 </score>
+			<score> 75 </score>
 			<scene> 2 </scene>
 			<timer> 50 </timer>
 			<smoke_bomb> 3 </smoke_bomb>
@@ -18,9 +18,9 @@
 			<decoy> 2 </decoy>
 		</Level_2>
 		<Level_3>
-			<score> 150 </score>
+			<score> 75 </score>
 			<scene> 3 </scene>
-			<timer> 5 </timer>
+			<timer> 50 </timer>
 			<smoke_bomb> 4 </smoke_bomb>
 			<speed_up> 2 </speed_up>
 			<decoy> 2 </decoy>

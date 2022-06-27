@@ -7863,6 +7863,10 @@ PrefabInstance:
       propertyPath: m_layer.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 7303315580976811276, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
+      propertyPath: m_cameraShake
+      value: 
+      objectReference: {fileID: 1775496613}
     - target: {fileID: 7450049222248714248, guid: 9ae03afebb6247340a768997332c5adc, type: 3}
       propertyPath: m_Name
       value: Player
