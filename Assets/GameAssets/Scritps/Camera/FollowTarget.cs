@@ -16,7 +16,6 @@ public class FollowTarget : MonoBehaviour
             GameManager.Instance.m_player.transform : null;
         }
 
-
         if (GetComponent<Camera>())
             GetComponent<Camera>().orthographicSize = 10;
     }

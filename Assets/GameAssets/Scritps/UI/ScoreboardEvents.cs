@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreboardEvents : MonoBehaviour
 {
     private Animator m_anim;
+    [SerializeField] private List<Button> m_buttons;
 
     private void Awake()
     {
@@ -13,6 +16,11 @@ public class ScoreboardEvents : MonoBehaviour
     {
         m_anim.SetTrigger("Next_Level");
         MusicManager.Instance?.PlaySound("mouse_click");
+
+        for (int i = 0; i < m_buttons.Count; i++)
+        {
+            m_buttons[i].enabled = false;
+        }
     }
     public void OnExitButton()
     {
