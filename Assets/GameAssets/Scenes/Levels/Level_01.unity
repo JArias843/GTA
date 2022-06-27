@@ -15112,6 +15112,7 @@ MonoBehaviour:
   - {fileID: 2121272562}
   - {fileID: 1274448108}
   - {fileID: 319266727}
+  m_emergencyCall: {fileID: 3155503719206763068, guid: d48ae6ae4e15962499508779fc23f3f3, type: 3}
 --- !u!4 &1416243830
 Transform:
   m_ObjectHideFlags: 0

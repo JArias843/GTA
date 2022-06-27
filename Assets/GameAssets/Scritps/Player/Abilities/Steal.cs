@@ -55,7 +55,10 @@ public class Steal : MonoBehaviour
                     if(m_currentMoneyStolen != 0)
                         MusicManager.Instance?.PlaySound("steal_money");
                     else
+                    {
                         MusicManager.Instance?.PlaySound("error");
+                        PoliceManager.Instance?.CallPolice();
+                    }
                 }
                 else 
                 {

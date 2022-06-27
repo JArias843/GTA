@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class Police : MonoBehaviour
 {
-    [SerializeField] private AIDestinationSetter m_destinationSetter;
+    [SerializeField] public AIDestinationSetter m_destinationSetter;
     public List<Transform> m_patrolPoints;
     private int m_currentIndex;
     private bool m_followPlayer;
@@ -85,7 +85,7 @@ public class Police : MonoBehaviour
         }
     }
 
-    private void Patrol()
+    public void Patrol()
     {
         if (!m_followPlayer && !m_followDummy)
         {
