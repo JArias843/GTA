@@ -74,13 +74,11 @@ public class GameManager : TemporalSingleton<GameManager>
             if (m_levelData.m_timer <= 0 && m_player.CoinsStolen >= m_levelData.m_score)
             {
                 UpdateGameState(GameState.Victory);
-                m_isFinish = true;
             }
 
             else if (m_levelData.m_timer <= 0 && m_player.CoinsStolen < m_levelData.m_score)
             {
                 UpdateGameState(GameState.Lose);
-                m_isFinish = true;
             }
         }
     }
@@ -97,6 +95,7 @@ public class GameManager : TemporalSingleton<GameManager>
         MusicManager.Instance?.PauseBackgroundMusic();
         MusicManager.Instance?.PlaySound("Victory");
 
+        m_isFinish = true;
         Time.timeScale = 0;
     }
 
@@ -112,6 +111,7 @@ public class GameManager : TemporalSingleton<GameManager>
         MusicManager.Instance?.PauseBackgroundMusic();
         MusicManager.Instance?.PlaySound("Lose");
 
+        m_isFinish = true;
         Time.timeScale = 0;
     }
 

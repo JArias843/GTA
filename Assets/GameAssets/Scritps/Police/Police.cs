@@ -44,7 +44,8 @@ public class Police : MonoBehaviour
         }
 
         if (m_followPlayer && 
-            Vector2.Distance(transform.position, GameManager.Instance.m_player.transform.position) <= m_killRange)
+            Vector2.Distance(transform.position, GameManager.Instance.m_player.transform.position) <= m_killRange &&
+            !GameManager.Instance.IsFinish)
         {
             GameManager.Instance.UpdateGameState(GameState.Lose);
         }
