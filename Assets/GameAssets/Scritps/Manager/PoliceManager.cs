@@ -37,6 +37,14 @@ public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
         }
     }
 
+    private void Update()
+    {
+        if (GameManager.Instance.LevelData.m_timer <= 25)
+        {
+            HandleSpeedUp();
+        }
+    }
+
     public void HandleZero()
     {
         index = -1;
@@ -64,7 +72,7 @@ public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
 
     public void HandleRangeUp()
     {
-        for (int i = 0; i < MAX_ENEMIES; i++)
+        for (int i = 0; i < m_list.Count; i++)
         {
             if (m_list[i].GetComponent<CircleCollider2D>())
             {
@@ -76,12 +84,12 @@ public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
     
     public void HandleSpeedUp()
     {
-        for (int i = 0; i < MAX_ENEMIES; i++)
+        for (int i = 0; i < m_list.Count; i++)
         {
             if (m_list[i].GetComponent<AIPath>())
             {
                 AIPath path = m_list[i].GetComponent<AIPath>();
-                path.maxSpeed = 7;
+                path.maxSpeed = 5;
             }
         }
     }
