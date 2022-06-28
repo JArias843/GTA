@@ -101,7 +101,7 @@ public class LoadScreen : MonoBehaviour
         {
             asyncOperation.allowSceneActivation = true;
 
-            MusicManager.Instance.MusicVolume = 0.2f;
+            MusicManager.Instance.MusicVolume = 0.1f;
             MusicManager.Instance.PlayBackgroundMusic("Game_Theme");
 
             Cursor.lockState = CursorLockMode.None;

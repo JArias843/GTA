@@ -19,8 +19,8 @@ public class MenuManager : TemporalSingleton<MenuManager>
         UpdateState(EState.MAIN_MENU);
         LevelManager.Instance.LevelID = -1;
 
-        MusicManager.Instance.MusicVolume = 0.2f;
-        MusicManager.Instance.SfxVolume = 0.8f;
+        MusicManager.Instance.MusicVolume = 0.15f;
+        MusicManager.Instance.SfxVolume = 0.4f;
         MusicManager.Instance.PlayBackgroundMusic("Main-Theme");
 
 
