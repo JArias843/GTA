@@ -88,7 +88,6 @@ public class GameManager : TemporalSingleton<GameManager>
         // Cargar pantalla de victoria
         SetActiveOneLayer(2);
 
-        /*Active the victory layer*/
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(true);
         m_layers[2].transform.GetChild(1).gameObject?.SetActive(false);
 
@@ -104,7 +103,6 @@ public class GameManager : TemporalSingleton<GameManager>
         // Cargar pantalla de derrota
         SetActiveOneLayer(2);
 
-        /*Active the lose layer*/
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(false);
         m_layers[2].transform.GetChild(1).gameObject?.SetActive(true);
 

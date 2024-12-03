@@ -82,7 +82,6 @@ public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
     {
         index = 1;
         m_list[index].SetActive(!m_list[index].activeInHierarchy);
-        // TODO: Ajustar posicion fuera de la camara
         m_list[index].transform.position = new Vector3(10, 5, 0);
     }
 
@@ -92,7 +91,6 @@ public class PoliceManager : Utils.TemporalSingleton<PoliceManager>
         {
             if (m_list[i].GetComponent<CircleCollider2D>())
             {
-                // TODO: Ajustar rango
                 m_list[i].GetComponent<CircleCollider2D>().radius = 6;
             }
         }

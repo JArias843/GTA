@@ -66,6 +66,10 @@ public class Police : MonoBehaviour
             m_followDummy = false;
             m_destinationSetter.target = collision.gameObject.transform;
         }
+        else if (collision as CircleCollider2D && collision.GetComponent<Police>())
+        {
+            Patrol();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
