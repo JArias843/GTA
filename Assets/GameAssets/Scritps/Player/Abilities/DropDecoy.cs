@@ -66,10 +66,11 @@ public class DropDecoy : AbilityParent
 
     protected override void AbilityEffect()
     {
-        m_dummies[m_numCharges - 1].gameObject.SetActive(true);
-        m_dummies[m_numCharges - 1].transform.position = transform.position + transform.right * m_distToSpawnDecoy;
-        m_dummies[m_numCharges - 1].transform.right = transform.right;
-        m_dummies[m_numCharges - 1].StartWalking(m_mousePos);
+        Dummy dummy = m_dummies[m_numCharges - 1];
+        dummy.gameObject.SetActive(true);
+        dummy.transform.position = transform.position + transform.right * m_distToSpawnDecoy;
+        dummy.transform.right = transform.right;
+        dummy.StartWalking(m_mousePos);
 
         m_isInvisActive = true;
         m_currentTimer = m_invisibilityDuration;

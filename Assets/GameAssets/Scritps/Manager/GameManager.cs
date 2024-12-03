@@ -45,6 +45,7 @@ public class GameManager : TemporalSingleton<GameManager>
         LevelData = MapLoader.LoadMap(LevelManager.Instance.LevelID);
         InputManager.Instance.OnEscapePressedEvent += OnEscapePressed;
 
+        // Init abilities
         int numAbilities = 0;
         if (LevelData.m_numSmokeBombs != 0)
         {
@@ -66,6 +67,7 @@ public class GameManager : TemporalSingleton<GameManager>
 
     private void Update()
     {
+        // Level Contdown
         if(!m_isFinish)
         {
             m_levelData.m_timer -= Time.deltaTime;
@@ -85,7 +87,7 @@ public class GameManager : TemporalSingleton<GameManager>
 
     private void HandleVictory()
     {
-        // Cargar pantalla de victoria
+        // Load Victory Screen
         SetActiveOneLayer(2);
 
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(true);
@@ -100,7 +102,7 @@ public class GameManager : TemporalSingleton<GameManager>
 
     private void HandleLose()
     {
-        // Cargar pantalla de derrota
+        // Load Lose Screen
         SetActiveOneLayer(2);
 
         m_layers[2].transform.GetChild(0).gameObject?.SetActive(false);
@@ -115,7 +117,7 @@ public class GameManager : TemporalSingleton<GameManager>
 
     public void HandleMainMenu()
     {
-        // Cargar pantalla de menu principal
+        // Load Main Menu
         SceneManager.LoadScene(0);
     }
 

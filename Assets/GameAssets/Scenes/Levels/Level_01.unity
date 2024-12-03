@@ -1203,7 +1203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438643836830492109, guid: 495130119830c9845addaf2a35721832, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1438643836830492109, guid: 495130119830c9845addaf2a35721832, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15087,7 +15087,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabRef: {fileID: 7902639748412124466, guid: be9ac614eb15cae4aaf6b5bb84aa11d2, type: 3}
-  m_policeState: 0
   m_list:
   - {fileID: 453997803}
   - {fileID: 285238332}
@@ -15125,7 +15124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420343168
 GameObject:

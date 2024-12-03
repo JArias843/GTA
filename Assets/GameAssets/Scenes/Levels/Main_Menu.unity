@@ -11308,7 +11308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabRef: {fileID: 1019171560419388359}
-  m_policeState: 0
   m_list:
   - {fileID: 1019171560419388359}
   m_patrolPoints:
@@ -26682,7 +26681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Globin Edition
+  m_Text: Hit & Run
 --- !u!222 &931381247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37993,7 +37992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Globin Edition
+  m_Text: Hit & Run
 --- !u!222 &1339240654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45924,7 +45923,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Grand Theft Auto
+  m_Text: 'Goblin Steal
 
 '
 --- !u!222 &1661582879
@@ -49288,7 +49287,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Grand Theft Auto
+  m_Text: 'Goblin Steal
 
 '
 --- !u!222 &1768765840
